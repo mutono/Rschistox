@@ -231,11 +231,11 @@ make_age_contact_rate_array <- function(pars, scenario, input_ages, input_contac
   if (pars$max_age < 60){
     error("max_age must be greater than 60")
   }
-  if (length(pars$input_ages) == 0) {
+  #if (length(pars$input_ages) == 0) {
     contact_settings = as.array(as.numeric())
     contact_settings = create_contact_settings(scenario)
     x <- rep(contact_settings[4], times=pars$max_age+1)
-  }
+  #}
 
   #' initialize an array with the same value for contact rate across all ages
   pars$contact_rate_by_age_array <- rep(contact_settings[4], times=pars$max_age+1)
