@@ -384,7 +384,7 @@ create_population <- function(pars){
   cercariae <- pars$init_env_cercariae
 
   #'  initialize the Gamma distribution for predisposition selection
-  pre <- dgamma(pars$predis_aggregation, 1/pars$predis_aggregation)
+  pre <- rgamma(pars$predis_aggregation, 1/pars$predis_aggregation)
   #' select all predispositions
   predisposition = sample(c(pre, pars$N))
 
@@ -483,7 +483,7 @@ create_population_specified_ages <- function(pars){
   }
   cercariae <- pars$init_env_cercariae
   #' initialize the Gamma distribution for predisposition selection
-  pre <- dgamma(pars$predis_aggregation, 1/pars$predis_aggregation)
+  pre <- rgamma(pars$predis_aggregation, 1/pars$predis_aggregation)
 
   #' select all predispositions
   predisposition <- runif(1,min=pre, max=pars$N)
@@ -1101,7 +1101,7 @@ birth_of_human <-  function(humans, pars){
   }
 
 
-  pre = gamma(pars$predis_aggregation, 1/pars$predis_aggregation, 0.5)
+  pre = rgamma(pars$predis_aggregation, 1/pars$predis_aggregation)
   predisp = sample(pre)[1]
   f_worms = rep(0, pars$worm_stages)
   m_worms = rep(0, pars$worm_stages)
@@ -1454,7 +1454,7 @@ get_prevalences <-  function(humans, time, pars){
   adult_pop = 0
   recorded_eggs = c()
   final_ages = c()
-  gamma_k  = gamma(1, pars$kato_katz_par, 1/kato_katz_par)
+  gamma_k  = rgamma(pars$kato_katz_par, 1/kato_katz_par)
   num_humans = length(humans)
   append(final_ages, humans$age)
   # final_eggs = kato_katz(eggs[i], gamma_k)
