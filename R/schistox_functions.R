@@ -71,8 +71,8 @@ Parameters <- function(N, time_step, N_communities, community_probs,
                        rate_acquired_immunity, M0, human_larvae_maturity_time, egg_sample_size, input_ages, input_contact_rates,
                        scenario)
 {
-  N <- as.integer(N)
-  time_step <- as.numeric(time_step)
+#' human population size  N <- as.integer(N)
+#' length of time step (in days)  time_step <- as.numeric(time_step)
   N_communities <- as.integer(N_communities)
   community_probs <- as.array(as.numeric(community_probs))
   community_contact_rate <-as.array(as.numeric(community_contact_rate))
