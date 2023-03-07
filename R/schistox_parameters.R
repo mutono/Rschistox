@@ -88,4 +88,4 @@ pars <- Parameters(N, time_step, N_communities, community_probs,
                 scenario)
 
 ## update parameters
-pars <- make_age_contact_rate_array(pars, scenario, input_ages, input_contact_rates)
+#pars <- make_age_contact_rate_array(pars, scenario, input_ages, input_contact_rates)
