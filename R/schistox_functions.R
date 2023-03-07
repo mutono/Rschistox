@@ -2,7 +2,7 @@ library(devtools)
 use_git()
 
 ## load all R scripts
-load_all()
+
 
 ## define functions for schistox
 
