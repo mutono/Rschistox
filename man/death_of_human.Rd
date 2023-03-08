@@ -2,10 +2,10 @@
 % Please edit documentation in R/schistox_functions.R
 \name{death_of_human}
 \alias{death_of_human}
-\title{Death of humans ---------------------------------------------------------}
+\title{Death of humans}
 \usage{
 death_of_human(humans)
 }
 \description{
-Death of humans ---------------------------------------------------------
+Death of humans
 }

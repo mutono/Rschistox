@@ -2,12 +2,12 @@
 % Please edit documentation in R/schistox_functions.R
 \name{get_prevalences}
 \alias{get_prevalences}
-\title{get prevalences ---------------------------------------------------------
+\title{get prevalences
 calculate the desired prevalences in the human population, and store them in an out struct}
 \usage{
 get_prevalences(humans, time, pars)
 }
 \description{
-get prevalences ---------------------------------------------------------
+get prevalences
 calculate the desired prevalences in the human population, and store them in an out struct
 }

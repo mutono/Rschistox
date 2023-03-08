@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{run_repeated_sims_no_population_change_increasing}
 \alias{run_repeated_sims_no_population_change_increasing}
-\title{repeated simulations ----------------------------------------------------
+\title{repeated simulations
    run_repeated_sims_no_population_change(filename, num_time_steps, mda_info, vaccine_info, num_repeats)
 run multiple simulations where aging of the population is not included, larvae are uptaken by humans as worms}
 \usage{
@@ -15,7 +15,7 @@ run_repeated_sims_no_population_change_increasing(
 )
 }
 \description{
-repeated simulations ----------------------------------------------------
+repeated simulations
    run_repeated_sims_no_population_change(filename, num_time_steps, mda_info, vaccine_info, num_repeats)
 run multiple simulations where aging of the population is not included, larvae are uptaken by humans as worms
 }

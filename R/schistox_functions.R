@@ -81,7 +81,7 @@ Human <- function(age,death_age,gender,predisposition,female_worms,male_worms,
 #' @param cercariae_survival proportion of cercariae that survive from one time point to the next
 #' @param miracidia_survival proportion of miracidia that survive from one time point to the next
 #' @param death_prob_by_age probability of dying each year, specified by age
-#' @param ages_for_death age ranges for death probailities
+#' @param ages_for_death age ranges for death probabilities
 #' @param r aggregation parameter for negative binomially distributed egg production
 #' @param vaccine_effectiveness efficacy of a vaccine if one is used
 #' @param drug_effectiveness efficacy of a drug given during MDA
@@ -91,10 +91,10 @@ Human <- function(age,death_age,gender,predisposition,female_worms,male_worms,
 #' @param use_kato_katz if 1, use Kato-Katz for egg count, if 0, do not use KK
 #' @param kato_katz_par parameter for Gamma distribution if KK is used
 #' @param heavy_burden_threshold number of eggs at which an individual is said to have a heavy infection
-#' @param rate_acquired_immunity rate at which immunity will be acquired for individuals. This will be multiplied by the cumulative nymber of worms people have had during their life to decide the level of immunity acquired
+#' @param rate_acquired_immunity rate at which immunity will be acquired for individuals. This will be multiplied by the cumulative number of worms people have had during their life to decide the level of immunity acquired
 #' @param M0 if a particular formula of egg production is used, this parameter is required and is a proxy for mean worm burden
 #' @param human_larvae_maturity_time length of time (in days) after which a cercariae uptake by a human will mature into a worm
-#' @param egg_sample_size the proportion of eggs which are sampled from each individual every time we check their burden (between 0 and 1). 1= all eggs in the person are sampled. Typical value fpr a urine sample may be ~1/100
+#' @param egg_sample_size the proportion of eggs which are sampled from each individual every time we check their burden (between 0 and 1). 1= all eggs in the person are sampled. Typical value for a urine sample may be ~1/100
 #' @param input_ages input ages for constructing contact array
 #' @param input_contact_rates input contact rates
 #' @param scenario can be one of "low adult", "moderate adult" or high adult"
@@ -104,69 +104,71 @@ Parameters <- function(N=500, time_step=20, N_communities=1, community_probs=1,
                        community_contact_rate=1, density_dependent_fecundity=0.0007,
                        average_worm_lifespan=5.7, max_age=100, initial_worms=10,
                        initial_miracidia=1e+08, initial_miracidia_days=1, init_env_cercariae=1e+08,
-                       worm_stages=1, contact_rate=0.18, max_fec_contact_rate_product=0.8, max_fecundity=20, age_contact_rates=input_contact_rates/sum(input_contact_rates),
-                       ages_for_contacts=c(4, 9, 15, 100), contact_rate_by_age_array=rep(0,times=max_age+1), mda_adherence=1,
+                       worm_stages=1, contact_rate=0.18, max_fec_contact_rate_product=0.8, max_fecundity=20, age_contact_rates=as.array(c(0.004484305, 0.538116592, 0.448430493, 0.008968610)),
+                       ages_for_contacts=as.array(c(4, 9, 15, 100)), contact_rate_by_age_array=as.array(rep(0,times=101)), mda_adherence=1,
                        mda_access=1, female_factor=1, male_factor=1, miracidia_maturity=24,
                        birth_rate=28*time_step/(1000*365), human_cercariae_prop=1, predis_aggregation=0.24, cercariae_survival=0.05,
-                       miracidia_survival=0.05, death_prob_by_age=c(0.0656, 0.0093, 0.003, 0.0023, 0.0027, 0.0038, 0.0044, 0.0048,
+                       miracidia_survival=0.05, death_prob_by_age=as.array(c(0.0656, 0.0093, 0.003, 0.0023, 0.0027, 0.0038, 0.0044, 0.0048,
                                                                     0.0053, 0.0065, 0.0088, 0.0106, 0.0144, 0.021, 0.0333, 0.0529,
-                                                                    0.0851, 0.1366, 0.2183, 0.2998 , 0.3698, 1),
-                       ages_for_death=c(1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60,
-                                        65, 70, 75, 80, 85, 90, 95, 100, 110), r=0.03,
-                       vaccine_effectiveness=0.86, drug_effectiveness=0.86, spec_ages=c(7639, 7082, 6524, 5674, 4725, 4147, 3928, 3362,
-                                                                                        2636, 1970, 1468, 1166, 943, 718, 455, 244), ages_per_index=5,
+                                                                    0.0851, 0.1366, 0.2183, 0.2998 , 0.3698, 1)),
+                       ages_for_death=as.array(c(1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60,
+                                        65, 70, 75, 80, 85, 90, 95, 100, 110)), r=0.0,
+                       vaccine_effectiveness=0.86, drug_effectiveness=0.86, spec_ages=as.array(c(7639, 7082, 6524, 5674, 4725, 4147, 3928, 3362,
+                                                                                        2636, 1970, 1468, 1166, 943, 718, 455, 244)), ages_per_index=5,
                        record_frequency=1/24, use_kato_katz=0, kato_katz_par=0.87, heavy_burden_threshold=50,
-                       rate_acquired_immunity=0, M0=20, human_larvae_maturity_time=30, egg_sample_size= 1/100, input_ages=c(4, 9, 15, 100), input_contact_rates= c(0.01, 1.2, 1, 0.02),
+                       rate_acquired_immunity=0, M0=20, human_larvae_maturity_time=30, egg_sample_size= 1/100, input_ages=as.array(c(4, 9, 15, 100)), input_contact_rates= as.array(c(0.01, 1.2, 1, 0.02)),
                        scenario="high adult")
 {
-  N <- as.integer(N)
-  time_step <- as.numeric(time_step)
-  N_communities <- as.integer(N_communities)
-  community_probs <- as.array(as.numeric(community_probs))
-  community_contact_rate <-as.array(as.numeric(community_contact_rate))
-  density_dependent_fecundity <- as.numeric(density_dependent_fecundity)
-  average_worm_lifespan <- as.numeric(average_worm_lifespan)
-  max_age <- as.numeric(max_age)
-  initial_worms <- as.integer(initial_worms)
-  initial_miracidia <- as.integer(initial_miracidia)
-  initial_miracidia_days <- as.integer(initial_miracidia_days)
-  init_env_cercariae <- as.integer(init_env_cercariae)
-  worm_stages <- as.integer(worm_stages)
-  contact_rate <-as.numeric(contact_rate)
-  max_fec_contact_rate_product <- as.numeric(max_fec_contact_rate_product)
-  max_fecundity <- as.numeric(max_fecundity)
-  age_contact_rates <- as.array(as.numeric(age_contact_rates))
-  ages_for_contacts <- as.array(as.integer(ages_for_contacts))
-  contact_rate_by_age_array <- as.array(as.numeric(contact_rate_by_age_array))
-  mda_adherence <- as.numeric(mda_adherence)
-  mda_access <- as.numeric(mda_access)
-  female_factor <- as.numeric(female_factor)
-  male_factor <- as.numeric(male_factor)
-  miracidia_maturity <- as.integer(miracidia_maturity)
-  birth_rate <- as.numeric(birth_rate)
-  human_cercariae_prop <- as.numeric(human_cercariae_prop)
-  predis_aggregation <- as.numeric(predis_aggregation)
-  cercariae_survival <- as.numeric(cercariae_survival)
-  miracidia_survival <- as.numeric(miracidia_survival)
-  death_prob_by_age <- as.array(as.numeric(death_prob_by_age))
-  ages_for_death <- as.array(as.numeric(ages_for_death))
-  r <- as.numeric(r)
-  vaccine_effectiveness <- as.numeric(vaccine_effectiveness)
-  drug_effectiveness <- as.numeric(drug_effectiveness)
-  spec_ages<- spec_ages/sum(spec_ages)*N
-  ages_per_index <- as.integer(ages_per_index)
-  record_frequency <- as.numeric(record_frequency)
-  use_kato_katz <- as.integer(use_kato_katz) # if 0, then don't use KK, if 1, use KK
-  kato_katz_par <- as.numeric(kato_katz_par)
-  heavy_burden_threshold <- as.integer(heavy_burden_threshold)
-  rate_acquired_immunity <- as.numeric(rate_acquired_immunity)
-  M0 <- as.numeric(M0) # mean worm burden
-  human_larvae_maturity_time <- as.integer(human_larvae_maturity_time)
-  egg_sample_size <- as.numeric(egg_sample_size)
-  egg_production_distribution <- as.character(egg_production_distribution)
-  input_contact_rates <- as.array(as.numeric(input_contact_rates))
-  input_ages <- as.array(as.numeric(input_ages))
-  scenario <- as.character(scenario)
+
+  stopifnot(is.numeric(N))
+  stopifnot(is.numeric(time_step))
+  stopifnot(is.numeric(N_communities))
+  stopifnot(is.numeric(community_probs))
+  stopifnot(is.numeric(community_contact_rate))
+  stopifnot(is.numeric(density_dependent_fecundity))
+  stopifnot(is.numeric(average_worm_lifespan))
+  stopifnot(is.numeric(max_age))
+  stopifnot(is.numeric(initial_worms)<2)
+  stopifnot(is.numeric(initial_miracidia))
+  stopifnot(is.numeric(initial_miracidia_days))
+  stopifnot(is.numeric(init_env_cercariae))
+  stopifnot(is.numeric(worm_stages))
+  stopifnot(is.numeric(contact_rate))
+  stopifnot(is.numeric(max_fec_contact_rate_product))
+  stopifnot(is.numeric(max_fecundity))
+  stopifnot(is.numeric(age_contact_rates))
+  stopifnot(is.numeric(ages_for_contacts))
+  stopifnot(is.numeric(contact_rate_by_age_array))
+  stopifnot(is.numeric(mda_adherence))
+  stopifnot(is.numeric(mda_access))
+  stopifnot(is.numeric(female_factor))
+  stopifnot(is.numeric(male_factor))
+  stopifnot(is.numeric(miracidia_maturity))
+  stopifnot(is.numeric(birth_rate))
+  stopifnot(is.numeric(human_cercariae_prop))
+  stopifnot(is.numeric(predis_aggregation))
+  stopifnot(is.numeric(cercariae_survival))
+  stopifnot(is.numeric(miracidia_survival))
+  stopifnot(is.numeric(death_prob_by_age))
+  stopifnot(is.numeric(ages_for_death))
+  stopifnot(is.numeric(r))
+  stopifnot(is.numeric(vaccine_effectiveness))
+  stopifnot(is.numeric(drug_effectiveness))
+  stopifnot(is.numeric(spec_ages/sum(spec_ages)*N))
+  stopifnot(is.numeric(ages_per_index))
+  stopifnot(is.numeric(record_frequency))
+  stopifnot(is.numeric(use_kato_katz))
+  stopifnot(is.numeric(kato_katz_par))
+  stopifnot(is.numeric(heavy_burden_threshold))
+  stopifnot(is.numeric(rate_acquired_immunity))
+  stopifnot(is.numeric(M0))
+  stopifnot(is.numeric(human_larvae_maturity_time))
+  stopifnot(is.numeric(egg_sample_size))
+  stopifnot(is.character(egg_production_distribution))
+  stopifnot(is.numeric(input_contact_rates))
+  stopifnot(is.numeric(input_ages))
+  stopifnot(is.character(scenario) & scenario%in%c("high adult", "low adult", "moderate adult"))
+
 
 
   parameters <- list("N"=N, "time_step"=time_step, "N_communities" = N_communities,"community_probs" = community_probs,
@@ -260,10 +262,10 @@ create_contact_settings <- function(scenario)
 }
 
 
-#' Age dependent contact rate ----------------------------------------------
+#' Age dependent contact rate
 
 
-#' function to get age dependent contact rate.
+#' This is a function to get age dependent contact rate.
 #' the contact rates are taken from the
 #' "What is required in terms of mass drug administration to interrupt the transmission
 #'     of schistosome parasites in regions of endemic infection?" paper
@@ -337,7 +339,7 @@ make_age_contact_rate_array <- function(pars, scenario, input_ages, input_contac
 
 
 
-#' Age for death of an individual ------------------------------------------
+#' Age for death of an individual
 
 
 #' function to generate an age for death of an individual
@@ -369,7 +371,7 @@ get_death_age <- function(pars){
 }
 
 
-#' age population and generating death ages --------------------------------
+#' age population and generating death ages
 
 #' function to age population and generating death ages
 
@@ -401,7 +403,7 @@ generate_ages_and_deaths <- function(num_steps, humans, pars){
 }
 
 
-#' Initial population ------------------------------------------------------
+#' Initial population
 
 
 #' This will create the initial human population with randomly chosen age, and gender.
@@ -505,7 +507,7 @@ create_population <- function(pars){
 
 
 
-#' Initial human population with an age distribution ------------------------
+#' Initial human population with an age distribution
 
 #' This will create the initial human population with an age distribution
 #' specified by the spec_ages variable
@@ -581,7 +583,7 @@ create_population_specified_ages <- function(pars){
 
 
 
-#' update contact rates ----------------------------------------------------
+#' update contact rates
 
 #' function to update the contact rate of individuals in the population. This is necessary
 #' as over time when people age, they will move through different age groups which have
@@ -603,8 +605,7 @@ update_contact_rate <- function(humans,  pars){
 
 }
 
-  #' Cercariae uptake --------------------------------------------------------
-
+  #' Cercariae uptake
 
 
 
@@ -670,9 +671,7 @@ cercariae_uptake <-function(humans, cercariae, miracidia, pars){
 
 
 }
-  #' cercariae uptake human larvae -------------------------------------------
-
-
+  #' cercariae uptake human larvae
 
 #'uptake cercariae into humans, whilst updating cercariae with matured miracidia.
 #'Uptaken cercariae become larvae within humans, rather than immediately into worms with this function.
@@ -747,8 +746,7 @@ enact_maturity_function_true <-  function(h){
 
 
 
-  #' Human larvae maturity ---------------------------------------------------
-
+  #' Human larvae maturity
 
 
 #' This will mature the human larvae into worms after a chosen number of days, which is specified
@@ -791,8 +789,7 @@ human_larvae_maturity <- function(humans, pars){
 
 }
 
-#' Kill miracidia in the environment ---------------------------------------
-
+#' Kill miracidia in the environment
 
 
 #' Kill a chosen proportion of miracidia in the environment governed by the
@@ -870,8 +867,7 @@ cercariae_death <-function(cercariae, miracidia, pars){
 
 }
 
-  #' Kill worms within human host --------------------------------------------
-
+  #' Kill worms within human host
 
 
   #' Worms die have a specified mean life span, and hence a rate of deaths per day .
@@ -937,8 +933,8 @@ worm_maturity <-function(humans, pars){
 
 
 }
-  #' Calculate worm pairs in humans ------------------------------------------
-
+  #' Calculate worm pairs in humans
+  #'
   #' function calculate_worm_pairs(humans)
   #'     return min(sum(humans.female_worms), sum(humans.male_worms))
   #' end
@@ -963,9 +959,8 @@ calculate_worm_pairs <- function(female_worms, male_worms)
 
 
 
-  #' Number of eggs produced -------------------------------------------------
-
- #' function to calculate the number of eggs produced
+#' Number of eggs produced
+#' function to calculate the number of eggs produced
 #'  this is done by choosing from a negative binomial distribution for each worms,
 #'  where the mean and aggregation parameters are calculated as in the
 #' "Refined stratified-worm-burden models that incorporate specific biological features
@@ -977,17 +972,12 @@ calculate_worm_pairs <- function(female_worms, male_worms)
 #'  we need to specify a probability of success, and a given number of
 #'  successes, which are derived
 #'  from the mean and aggregation in the function below
-  #
+#
 
-    #' inputs
-
-    #' r - aggregation factor for NB distribution
-
-
-#'    egg_production!(humans, pars)
-
+#' inputs
+#' r - aggregation factor for NB distribution
 #' function to produce eggs for individuals, dependent on how many worms they have
-#'        and the max fecundity and density dependent fecundity of the population
+#'  and the max fecundity and density dependent fecundity of the population
 #' @export
 egg_production <-  function(humans, pars)
 {
@@ -1092,12 +1082,10 @@ egg_production_increasing <-  function(humans, pars){
 
 }
 
-  #' Miracidia production ----------------------------------------------------
-
+  #' Miracidia production
 
   #' function
 
-#'    miracidia_production!(humans)
 
 #' release eggs from individuals into the environment as miracidia. Release is relative to the contact rate with
 #' the environment for each individual.
@@ -1112,7 +1100,7 @@ miracidia_production <- function(humans){
 
 
 
-#' Death of humans ---------------------------------------------------------
+#' Death of humans
 #' @export
 death_of_human <- function(humans){
 
@@ -1231,9 +1219,7 @@ administer_drug <-  function(humans, indices, drug_effectiveness){
   return(humans)
 
 }
-#' Administer vaccine ------------------------------------------------------
-
-
+#' Administer vaccine
 #' function to administer drug to a specific variable (e.g. female_worms or eggs).
 #' input the variable, the indices to apply to and the effectiveness of treatment
 
@@ -1258,7 +1244,7 @@ administer_vaccine <-  function(humans, indices, vaccine_effectiveness, vaccine_
   return(humans)
 }
 
-  #' Mass drug administration ------------------------------------------------
+  #' Mass drug administration
 
 
   #' function for mass drug administration
@@ -1301,7 +1287,7 @@ mda <-  function(humans, mda_coverage, min_age_mda, max_age_mda, mda_effectivene
 }
 
 
-  #' Update MDA --------------------------------------------------------------
+  #' Update MDA
 
   #' function to update the mda information
 
@@ -1329,8 +1315,7 @@ update_mda <-  function(mda_info, mda_round){
 
 }
 
-#' create MDA --------------------------------------------------------------
-
+#' create MDA
 
 #' function to create a set of mda's which will be performed regularly
 #' first_mda_time specifies when this will first occur in years,
@@ -1370,8 +1355,7 @@ create_mda <-  function(pre_SAC_prop, SAC_prop, adult_prop, first_mda_time,
 
 }
 
-  #' add vaccination to population -------------------------------------------
-
+  #' add vaccination to population
   #' function to add vaccination to population
 
   # function vaccinate(humans, vaccine_coverage, min_age_vaccine, max_age_vaccine, vaccine_effectiveness,
@@ -1410,8 +1394,7 @@ create_mda <-  function(pre_SAC_prop, SAC_prop, adult_prop, first_mda_time,
   # end
 
 
-  #' update vaccine information ----------------------------------------------
-
+  #' update vaccine information
 
   #' function to update vaccine information =#
   # function update_vaccine(vaccine_info, vaccine_round)
@@ -1432,8 +1415,7 @@ create_mda <-  function(pre_SAC_prop, SAC_prop, adult_prop, first_mda_time,
   # end
 
 
-  #' vaccine decay -----------------------------------------------------------
-
+  #' vaccine decay
 
 #    vac_decay!(humans, pars)
 
@@ -1449,11 +1431,8 @@ vac_decay <-  function(humans, pars)
 
 
 
-  #' kato_katz eggs ----------------------------------------------------------
-
-
-#    kato_katz(eggs, gamma_k)
-#
+#' kato_katz eggs
+#'
 #' calculate number of eggs using kato katz method. Gamma_k is a gamma distribution with shape and scale
 #' defined by pars.kato_katz_par
 #' @export
@@ -1468,10 +1447,7 @@ kato_katz <-  function(eggs, gamma_k){
 
 
 
-  #' count number of eggs ----------------------------------------------------
-
- #  count_eggs(humans)
-
+#' count number of eggs
 #' count the total number of eggs in the human population
 #' @export
 count_eggs <-  function(humans){
@@ -1484,11 +1460,7 @@ count_eggs <-  function(humans){
 
 
 
-  #' get prevalences ---------------------------------------------------------
-
-
-#    get_prevalences!(humans, time, pars)
-
+#' get prevalences
 #' calculate the desired prevalences in the human population, and store them in an out struct
 #' @export
 get_prevalences <-  function(humans, time, pars){
@@ -1592,10 +1564,8 @@ get_prevalences <-  function(humans, time, pars){
 
 
 }
-#' save population to file -------------------------------------------------
-
-
-#' save the enironment variables in a specified file
+#' save population to file
+#' save the environment variables in a specified file
 #' @export
 save_population_to_file <- function(filename, humans, miracidia, cercariae, pars){
     data <- tibble("humans"= humans,  "miracidia"=miracidia, "cercariae"=cercariae, "pars"= pars)
@@ -1606,7 +1576,6 @@ save_population_to_file <- function(filename, humans, miracidia, cercariae, pars
 
 
 
-#' load_population_from_file(filename)
 
 #' load the environmental variables saved in the specified file
 #' @export
@@ -1624,12 +1593,9 @@ load_population_from_file <- function(filename){
 
 
 
-#' generate a distribution for ages ----------------------------------------
-
+#' generate a distribution for ages
 #' function to generate a distribution for ages based on a specified demography
-
 #' generate population numbers for each age in
-
 #' @export
 generate_age_distribution <-  function(pars)
 {
@@ -1647,12 +1613,9 @@ generate_age_distribution <-  function(pars)
 
 
 
-#' construct the set of ages -----------------------------------------------
-
+#' construct the set of ages
 #' function to construct the set of ages, with size N
-
 #' specified_age_distribution(pars)
-
 #' output ages according to a specified age distribution
 #' @export
 specified_age_distribution <-function(pars)
@@ -1673,11 +1636,8 @@ specified_age_distribution <-function(pars)
 
 
 
-  #' update environment to equilibrium ---------------------------------------
-
-
-  #'  update_env_to_equilibrium(num_time_steps, humans, miracidia, cercariae, pars)
-
+#' update environment to equilibrium
+#'  update_env_to_equilibrium(num_time_steps, humans, miracidia, cercariae, pars)
 #' update the population for a given length of time. Here we do not age the population or include birth, deaths or interventions.
 #' @export
 update_env_to_equilibrium <-  function(num_time_steps, humans, miracidia, cercariae, pars){
@@ -1705,7 +1665,7 @@ update_env_to_equilibrium <-  function(num_time_steps, humans, miracidia, cercar
 
   append(miracidia, miracidia_production(humans))
 
-  #'  uptake larvae into humans from the environment
+#'  uptake larvae into humans from the environment
   humans <- cercariae_uptake(humans, cercariae, miracidia, pars)[1]
   cercariae <- cercariae_uptake(humans, cercariae, miracidia, pars)[2]
   miracidia <- cercariae_uptake(humans, cercariae, miracidia, pars)[3]
@@ -1766,7 +1726,7 @@ update_env_to_equilibrium_human_larvae <-  function(num_time_steps, humans, mira
 }
 
 
-#' update environment to equilibrium ---------------------------------------
+#' update environment to equilibrium
 
 
 #' update_env_to_equilibrium_increasing(num_time_steps, humans, miracidia, cercariae, pars)
@@ -1814,15 +1774,12 @@ update_env_to_equilibrium_increasing <- function(num_time_steps, humans, miracid
 
 
 }
-  #' update env constant population ------------------------------------------
 
-
-
-  #'  update_env_constant_population(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
-
-#'update the population for a given length of time. Here we include deaths and for each death an individual is immediately born.
- #'   Interventions are included in this function and larvae are immediately uptaken as worms
-
+#' update env constant population
+#' update_env_constant_population(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
+#' update the population for a given length of time. Here we include deaths and for each death an individual is immediately born.
+#' Interventions are included in this function and larvae are immediately uptaken as worms
+#'
 #' @export
 update_env_constant_population <- function(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info){
 
@@ -1973,12 +1930,10 @@ update_env_constant_population <- function(num_time_steps, humans,  miracidia, c
 
 
 
-  #' update env_sonstant population ------------------------------------------
-
-
-
-#'    update_env_constant_population_human_larvae(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
-
+#' update env_sonstant population
+#'
+#'  update_env_constant_population_human_larvae(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
+#'
 #'update the population for a given length of time. Here we include deaths and for each death an individual is immediately born.
 #'Interventions are included in this function and larvae are uptaken as larvae in the humans.
 #' @export
@@ -2116,7 +2071,7 @@ update_env_constant_population_human_larvae <-  function(num_time_steps, humans,
   return(humans, miracidia, cercariae, record)
 
 }
-  #' update env constant population increasing -------------------------------
+  #' update env constant population increasing
 
 
 
@@ -2261,9 +2216,7 @@ update_env_constant_population_increasing<- function(num_time_steps, humans,  mi
 
 }
 
-  #' update env births and deaths --------------------------------------------
-
-
+#' update env births and deaths
 
 #'    update_env_no_births_deaths(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
 
@@ -2389,8 +2342,7 @@ update_env_no_births_deaths <-  function(num_time_steps, humans,  miracidia, cer
   }
 
 
-  #' update env_no_births_deaths_human larvae --------------------------------
-
+  #' update env_no_births_deaths_human larvae
 
  #'   update_env_no_births_deaths_human_larvae(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
 
@@ -2520,7 +2472,7 @@ update_env_no_births_deaths_human_larvae <-  function (num_time_steps, humans,  
 }
 
 
-  #' update env no. births and deaths increasing -----------------------------
+#' update env no. births and deaths increasing
 
 
 #'    update_env_no_births_deaths_increasing(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
@@ -2650,8 +2602,7 @@ update_env_no_births_deaths_increasing <-  function(num_time_steps, humans,  mir
   }
 
 
-  #' Store prevalence and sac prevalence -------------------------------------
-
+  #' Store prevalence and sac prevalence
   #' when we run multiple simulations, we store them in an array. This function will store the prevalence and sac prevalence
 
 
@@ -2688,8 +2639,7 @@ collect_prevs <-  function(times, prev, sac_prev, high_burden, high_burden_sac, 
 }
 
 
-  #' repeat simulations ------------------------------------------------------
-
+  #' repeat simulations
   #' repeat simulations where we allow mdas and vaccination, but keep the population the same by adding a birth for every death
 
 #    run_repeated_sims_no_population_change_human_larvae(filename, num_time_steps, mda_info, vaccine_info, num_repeats)
@@ -2745,9 +2695,7 @@ run_repeated_sims_no_population_change_human_larvae <-  function (filename, num_
 }
 
 
-  #' repeated simulations ----------------------------------------------------
-
-
+  #' repeated simulations
 
 #'    run_repeated_sims_no_population_change(filename, num_time_steps, mda_info, vaccine_info, num_repeats)
 
@@ -2801,9 +2749,7 @@ run_repeated_sims_no_population_change_increasing <-  function (filename, num_ti
 }
 
 
-  #' repeat simulations ------------------------------------------------------
-
-
+  #' repeat simulations
   #' repeat simulations where we allow mdas and vaccination, but keep the population the same by adding a birth for every death
 
 #    run_repeated_sims_no_births_deaths(filename, num_time_steps, mda_info, vaccine_info, num_repeats)
@@ -2859,8 +2805,7 @@ run_repeated_sims_no_births_deaths <-  function (filename, num_time_steps, mda_i
 
 
 
-  #' repeat simulations ------------------------------------------------------
-
+  #' repeat simulations
 
 #    run_repeated_sims_no_births_deaths_human_larvae(filename, num_time_steps, mda_info, vaccine_info, num_repeats)
 
@@ -2906,8 +2851,7 @@ run_repeated_sims_no_births_deaths_human_larvae <-  function(filename, num_time_
 }
 
 
-  #' repeat simulations ------------------------------------------------------
-
+  #' repeat simulations
   #' repeat simulations where we allow mdas and vaccination, but keep the population the same by adding a birth for every death
 
 

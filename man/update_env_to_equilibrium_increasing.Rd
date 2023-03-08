@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{update_env_to_equilibrium_increasing}
 \alias{update_env_to_equilibrium_increasing}
-\title{update environment to equilibrium ---------------------------------------
+\title{update environment to equilibrium
 update_env_to_equilibrium_increasing(num_time_steps, humans, miracidia, cercariae, pars)
 update the population for a given length of time. Here we do not age the population or include birth, deaths or interventions and for this
 function larvae are uptaken from the environment immediately to worms and eggs are produced using a monotonically increasing function}
@@ -16,7 +16,7 @@ update_env_to_equilibrium_increasing(
 )
 }
 \description{
-update environment to equilibrium ---------------------------------------
+update environment to equilibrium
 update_env_to_equilibrium_increasing(num_time_steps, humans, miracidia, cercariae, pars)
 update the population for a given length of time. Here we do not age the population or include birth, deaths or interventions and for this
 function larvae are uptaken from the environment immediately to worms and eggs are produced using a monotonically increasing function

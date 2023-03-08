@@ -2,8 +2,8 @@ Package: Rschistox
 Type: Package
 Title: Simulation of schistosomiasis transmission in the population, with treatment strategies
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Author: Mutono Nyamai (Adapted from Matt Graham schistoxpkg in Julia)
+Maintainer: The package maintainer <mutono.nyamai@uonbi.ac.ke>
 Description: An R package that simulates schistosomiasis transmission in the population. It is adapted from the schistoxpkg in Julia.
 License: MIT + file LICENSE
 Encoding: UTF-8

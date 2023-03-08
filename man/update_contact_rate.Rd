@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{update_contact_rate}
 \alias{update_contact_rate}
-\title{update contact rates ----------------------------------------------------
+\title{update contact rates
 function to update the contact rate of individuals in the population. This is necessary
 as over time when people age, they will move through different age groups which have
 different contact rates}
@@ -10,7 +10,7 @@ different contact rates}
 update_contact_rate(humans, pars)
 }
 \description{
-update contact rates ----------------------------------------------------
+update contact rates
 function to update the contact rate of individuals in the population. This is necessary
 as over time when people age, they will move through different age groups which have
 different contact rates

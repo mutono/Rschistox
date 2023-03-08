@@ -2,10 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{update_env_constant_population_human_larvae}
 \alias{update_env_constant_population_human_larvae}
-\title{update env_sonstant population ------------------------------------------
-   update_env_constant_population_human_larvae(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
-update the population for a given length of time. Here we include deaths and for each death an individual is immediately born.
-Interventions are included in this function and larvae are uptaken as larvae in the humans.}
+\title{update env_sonstant population}
 \usage{
 update_env_constant_population_human_larvae(
   num_time_steps,
@@ -18,8 +15,9 @@ update_env_constant_population_human_larvae(
 )
 }
 \description{
-update env_sonstant population ------------------------------------------
-   update_env_constant_population_human_larvae(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
+update_env_constant_population_human_larvae(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
+}
+\details{
 update the population for a given length of time. Here we include deaths and for each death an individual is immediately born.
 Interventions are included in this function and larvae are uptaken as larvae in the humans.
 }

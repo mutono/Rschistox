@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{generate_ages_and_deaths}
 \alias{generate_ages_and_deaths}
-\title{age population and generating death ages --------------------------------
+\title{age population and generating death ages
 function to age population and generating death ages
 Step forward the population by a number of steps, where we will go through aging and removing individuals when they
 pass their age of death. This will generate an age distribution in the population which corresponds to the death_prob_by_age and
@@ -11,7 +11,7 @@ ages_for_deaths parameters, which specify the probability of dying at each age.}
 generate_ages_and_deaths(num_steps, humans, pars)
 }
 \description{
-age population and generating death ages --------------------------------
+age population and generating death ages
 function to age population and generating death ages
 Step forward the population by a number of steps, where we will go through aging and removing individuals when they
 pass their age of death. This will generate an age distribution in the population which corresponds to the death_prob_by_age and

@@ -2,14 +2,14 @@
 % Please edit documentation in R/schistox_functions.R
 \name{generate_age_distribution}
 \alias{generate_age_distribution}
-\title{generate a distribution for ages ----------------------------------------
+\title{generate a distribution for ages
 function to generate a distribution for ages based on a specified demography
 generate population numbers for each age in}
 \usage{
 generate_age_distribution(pars)
 }
 \description{
-generate a distribution for ages ----------------------------------------
+generate a distribution for ages
 function to generate a distribution for ages based on a specified demography
 generate population numbers for each age in
 }

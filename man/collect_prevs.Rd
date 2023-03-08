@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{collect_prevs}
 \alias{collect_prevs}
-\title{Store prevalence and sac prevalence -------------------------------------
+\title{Store prevalence and sac prevalence
 when we run multiple simulations, we store them in an array. This function will store the prevalence and sac prevalence
 collect multiple prevalences within the population and store in appropriate arrays}
 \usage{
@@ -19,7 +19,7 @@ collect_prevs(
 )
 }
 \description{
-Store prevalence and sac prevalence -------------------------------------
+Store prevalence and sac prevalence
 when we run multiple simulations, we store them in an array. This function will store the prevalence and sac prevalence
 collect multiple prevalences within the population and store in appropriate arrays
 }

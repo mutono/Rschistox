@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{specified_age_distribution}
 \alias{specified_age_distribution}
-\title{construct the set of ages -----------------------------------------------
+\title{construct the set of ages
 function to construct the set of ages, with size N
 specified_age_distribution(pars)
 output ages according to a specified age distribution}
@@ -10,7 +10,7 @@ output ages according to a specified age distribution}
 specified_age_distribution(pars)
 }
 \description{
-construct the set of ages -----------------------------------------------
+construct the set of ages
 function to construct the set of ages, with size N
 specified_age_distribution(pars)
 output ages according to a specified age distribution

@@ -2,14 +2,14 @@
 % Please edit documentation in R/schistox_functions.R
 \name{update_mda}
 \alias{update_mda}
-\title{Update MDA --------------------------------------------------------------
+\title{Update MDA
 function to update the mda information
 update when the next mda will take place}
 \usage{
 update_mda(mda_info, mda_round)
 }
 \description{
-Update MDA --------------------------------------------------------------
+Update MDA
 function to update the mda information
 update when the next mda will take place
 }

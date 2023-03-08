@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{create_population_specified_ages}
 \alias{create_population_specified_ages}
-\title{Initial human population with an age distribution ------------------------
+\title{Initial human population with an age distribution
 This will create the initial human population with an age distribution
 specified by the spec_ages variable
 Predisposition is taken to be gamma distributed. There is also a male and female
@@ -12,7 +12,7 @@ In addition to this, it will create the initial miracidia environment vector}
 create_population_specified_ages(pars)
 }
 \description{
-Initial human population with an age distribution ------------------------
+Initial human population with an age distribution
 This will create the initial human population with an age distribution
 specified by the spec_ages variable
 Predisposition is taken to be gamma distributed. There is also a male and female

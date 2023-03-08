@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{get_death_age}
 \alias{get_death_age}
-\title{Age for death of an individual ------------------------------------------
+\title{Age for death of an individual
 function to generate an age for death of an individual
 This will create the initial human population with randomly chosen age, and gender.
 Predisposition is taken to be gamma distributed
@@ -12,7 +12,7 @@ In addition to this, it will create the initial miracidia environment vector}
 get_death_age(pars)
 }
 \description{
-Age for death of an individual ------------------------------------------
+Age for death of an individual
 function to generate an age for death of an individual
 This will create the initial human population with randomly chosen age, and gender.
 Predisposition is taken to be gamma distributed

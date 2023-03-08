@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{mda}
 \alias{mda}
-\title{Mass drug administration ------------------------------------------------
+\title{Mass drug administration
 function for mass drug administration
 currently there is no correlation between individuals chosen each time
  mda(humans, mda_coverage, min_age_mda, max_age_mda, mda_effectiveness, mda_gender)
@@ -19,7 +19,7 @@ mda(
 )
 }
 \description{
-Mass drug administration ------------------------------------------------
+Mass drug administration
 function for mass drug administration
 currently there is no correlation between individuals chosen each time
  mda(humans, mda_coverage, min_age_mda, max_age_mda, mda_effectiveness, mda_gender)

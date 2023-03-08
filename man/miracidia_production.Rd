@@ -2,18 +2,16 @@
 % Please edit documentation in R/schistox_functions.R
 \name{miracidia_production}
 \alias{miracidia_production}
-\title{Miracidia production ----------------------------------------------------
+\title{Miracidia production
 function
-   miracidia_production!(humans)
 release eggs from individuals into the environment as miracidia. Release is relative to the contact rate with
 the environment for each individual.}
 \usage{
 miracidia_production(humans)
 }
 \description{
-Miracidia production ----------------------------------------------------
+Miracidia production
 function
-   miracidia_production!(humans)
 release eggs from individuals into the environment as miracidia. Release is relative to the contact rate with
 the environment for each individual.
 }

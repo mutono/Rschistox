@@ -2,14 +2,11 @@
 % Please edit documentation in R/schistox_functions.R
 \name{kato_katz}
 \alias{kato_katz}
-\title{kato_katz eggs ----------------------------------------------------------
-calculate number of eggs using kato katz method. Gamma_k is a gamma distribution with shape and scale
-defined by pars.kato_katz_par}
+\title{kato_katz eggs}
 \usage{
 kato_katz(eggs, gamma_k)
 }
 \description{
-kato_katz eggs ----------------------------------------------------------
 calculate number of eggs using kato katz method. Gamma_k is a gamma distribution with shape and scale
 defined by pars.kato_katz_par
 }

@@ -2,14 +2,14 @@
 % Please edit documentation in R/schistox_functions.R
 \name{miracidia_death}
 \alias{miracidia_death}
-\title{Kill miracidia in the environment ---------------------------------------
+\title{Kill miracidia in the environment
 Kill a chosen proportion of miracidia in the environment governed by the
 miracidia_survival parameter in the pars struct}
 \usage{
 miracidia_death(miracidia, pars)
 }
 \description{
-Kill miracidia in the environment ---------------------------------------
+Kill miracidia in the environment
 Kill a chosen proportion of miracidia in the environment governed by the
 miracidia_survival parameter in the pars struct
 }

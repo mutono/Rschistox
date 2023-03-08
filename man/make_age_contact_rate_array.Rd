@@ -2,8 +2,8 @@
 % Please edit documentation in R/schistox_functions.R
 \name{make_age_contact_rate_array}
 \alias{make_age_contact_rate_array}
-\title{Age dependent contact rate ----------------------------------------------
-function to get age dependent contact rate.
+\title{Age dependent contact rate
+This is a function to get age dependent contact rate.
 the contact rates are taken from the
 "What is required in terms of mass drug administration to interrupt the transmission
     of schistosome parasites in regions of endemic infection?" paper
@@ -12,8 +12,8 @@ at some point we may change this to be an input from a file instead}
 make_age_contact_rate_array(pars, scenario, input_ages, input_contact_rates)
 }
 \description{
-Age dependent contact rate ----------------------------------------------
-function to get age dependent contact rate.
+Age dependent contact rate
+This is a function to get age dependent contact rate.
 the contact rates are taken from the
 "What is required in terms of mass drug administration to interrupt the transmission
     of schistosome parasites in regions of endemic infection?" paper

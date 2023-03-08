@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{update_env_no_births_deaths_human_larvae}
 \alias{update_env_no_births_deaths_human_larvae}
-\title{update env_no_births_deaths_human larvae --------------------------------
+\title{update env_no_births_deaths_human larvae
   update_env_no_births_deaths_human_larvae(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
 update the population for a given length of time. Here we do not include births or deaths and individuals do not age
 Interventions are included in this function and larvae are uptaken as larvae in humans}
@@ -18,7 +18,7 @@ update_env_no_births_deaths_human_larvae(
 )
 }
 \description{
-update env_no_births_deaths_human larvae --------------------------------
+update env_no_births_deaths_human larvae
   update_env_no_births_deaths_human_larvae(num_time_steps, humans,  miracidia, cercariae, pars, mda_info, vaccine_info)
 update the population for a given length of time. Here we do not include births or deaths and individuals do not age
 Interventions are included in this function and larvae are uptaken as larvae in humans

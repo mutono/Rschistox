@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{worm_maturity}
 \alias{worm_maturity}
-\title{Kill worms within human host --------------------------------------------
+\title{Kill worms within human host
 Worms die have a specified mean life span, and hence a rate of deaths per day .
 the number of deaths, or maturing from each stage is dependent
 on the number of worm stages and rate of aging through stages and dying.
@@ -17,7 +17,7 @@ to update how many worms are in each stage}
 worm_maturity(humans, pars)
 }
 \description{
-Kill worms within human host --------------------------------------------
+Kill worms within human host
 Worms die have a specified mean life span, and hence a rate of deaths per day .
 the number of deaths, or maturing from each stage is dependent
 on the number of worm stages and rate of aging through stages and dying.

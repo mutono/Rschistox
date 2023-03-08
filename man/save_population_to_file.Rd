@@ -2,12 +2,12 @@
 % Please edit documentation in R/schistox_functions.R
 \name{save_population_to_file}
 \alias{save_population_to_file}
-\title{save population to file -------------------------------------------------
-save the enironment variables in a specified file}
+\title{save population to file
+save the environment variables in a specified file}
 \usage{
 save_population_to_file(filename, humans, miracidia, cercariae, pars)
 }
 \description{
-save population to file -------------------------------------------------
-save the enironment variables in a specified file
+save population to file
+save the environment variables in a specified file
 }

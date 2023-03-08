@@ -2,14 +2,14 @@
 % Please edit documentation in R/schistox_functions.R
 \name{cercariae_uptake_with_human_larvae}
 \alias{cercariae_uptake_with_human_larvae}
-\title{cercariae uptake human larvae -------------------------------------------
+\title{cercariae uptake human larvae
 uptake cercariae into humans, whilst updating cercariae with matured miracidia.
 Uptaken cercariae become larvae within humans, rather than immediately into worms with this function.}
 \usage{
 cercariae_uptake_with_human_larvae(humans, cercariae, miracidia, pars)
 }
 \description{
-cercariae uptake human larvae -------------------------------------------
+cercariae uptake human larvae
 uptake cercariae into humans, whilst updating cercariae with matured miracidia.
 Uptaken cercariae become larvae within humans, rather than immediately into worms with this function.
 }

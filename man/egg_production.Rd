@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{egg_production}
 \alias{egg_production}
-\title{Number of eggs produced -------------------------------------------------
+\title{Number of eggs produced
 function to calculate the number of eggs produced
  this is done by choosing from a negative binomial distribution for each worms,
  where the mean and aggregation parameters are calculated as in the
@@ -17,14 +17,13 @@ for julia the negative binomial describes the number of failures before
  from the mean and aggregation in the function below
 inputs
 r - aggregation factor for NB distribution
-   egg_production!(humans, pars)
 function to produce eggs for individuals, dependent on how many worms they have
-       and the max fecundity and density dependent fecundity of the population}
+ and the max fecundity and density dependent fecundity of the population}
 \usage{
 egg_production(humans, pars)
 }
 \description{
-Number of eggs produced -------------------------------------------------
+Number of eggs produced
 function to calculate the number of eggs produced
  this is done by choosing from a negative binomial distribution for each worms,
  where the mean and aggregation parameters are calculated as in the
@@ -39,7 +38,6 @@ for julia the negative binomial describes the number of failures before
  from the mean and aggregation in the function below
 inputs
 r - aggregation factor for NB distribution
-   egg_production!(humans, pars)
 function to produce eggs for individuals, dependent on how many worms they have
-       and the max fecundity and density dependent fecundity of the population
+ and the max fecundity and density dependent fecundity of the population
 }

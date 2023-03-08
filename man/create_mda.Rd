@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{create_mda}
 \alias{create_mda}
-\title{create MDA --------------------------------------------------------------
+\title{create MDA
 function to create a set of mda's which will be performed regularly
 first_mda_time specifies when this will first occur in years,
 last_mda_time is the final mda in this block
@@ -38,7 +38,7 @@ create_mda(
 \item{regularity}{is how often to perform the mda in years}
 }
 \description{
-create MDA --------------------------------------------------------------
+create MDA
 function to create a set of mda's which will be performed regularly
 first_mda_time specifies when this will first occur in years,
 last_mda_time is the final mda in this block

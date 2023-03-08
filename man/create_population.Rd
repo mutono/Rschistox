@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{create_population}
 \alias{create_population}
-\title{Initial population ------------------------------------------------------
+\title{Initial population
 This will create the initial human population with randomly chosen age, and gender.
 Predisposition is taken to be gamma distributed
 There is also a male and female adjustment to predisposition adjusting for gender specific behaviour
@@ -11,7 +11,7 @@ In addition to this, it will create the initial miracidia environment vector}
 create_population(pars)
 }
 \description{
-Initial population ------------------------------------------------------
+Initial population
 This will create the initial human population with randomly chosen age, and gender.
 Predisposition is taken to be gamma distributed
 There is also a male and female adjustment to predisposition adjusting for gender specific behaviour

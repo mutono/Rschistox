@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{run_repeated_sims_no_population_change_human_larvae}
 \alias{run_repeated_sims_no_population_change_human_larvae}
-\title{repeat simulations ------------------------------------------------------
+\title{repeat simulations
 repeat simulations where we allow mdas and vaccination, but keep the population the same by adding a birth for every death
 run multiple simulations where the population is aged, but each death is replaced by a birth and larvae are uptaken by humans as larvae}
 \usage{
@@ -15,7 +15,7 @@ run_repeated_sims_no_population_change_human_larvae(
 )
 }
 \description{
-repeat simulations ------------------------------------------------------
+repeat simulations
 repeat simulations where we allow mdas and vaccination, but keep the population the same by adding a birth for every death
 run multiple simulations where the population is aged, but each death is replaced by a birth and larvae are uptaken by humans as larvae
 }

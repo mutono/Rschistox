@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{administer_vaccine}
 \alias{administer_vaccine}
-\title{Administer vaccine ------------------------------------------------------
+\title{Administer vaccine
 function to administer drug to a specific variable (e.g. female_worms or eggs).
 input the variable, the indices to apply to and the effectiveness of treatment
    administer_vaccine(humans, indices, vaccine_effectiveness, vaccine_duration)
@@ -13,7 +13,7 @@ adding to their vaccine status signifying that they will have increased immunity
 administer_vaccine(humans, indices, vaccine_effectiveness, vaccine_duration)
 }
 \description{
-Administer vaccine ------------------------------------------------------
+Administer vaccine
 function to administer drug to a specific variable (e.g. female_worms or eggs).
 input the variable, the indices to apply to and the effectiveness of treatment
    administer_vaccine(humans, indices, vaccine_effectiveness, vaccine_duration)

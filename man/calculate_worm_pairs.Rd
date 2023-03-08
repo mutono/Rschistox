@@ -2,16 +2,11 @@
 % Please edit documentation in R/schistox_functions.R
 \name{calculate_worm_pairs}
 \alias{calculate_worm_pairs}
-\title{Calculate worm pairs in humans ------------------------------------------
-function calculate_worm_pairs(humans)
-    return min(sum(humans.female_worms), sum(humans.male_worms))
-end
-calculate how many pairs of worms there are in each human host}
+\title{Calculate worm pairs in humans}
 \usage{
 calculate_worm_pairs(female_worms, male_worms)
 }
 \description{
-Calculate worm pairs in humans ------------------------------------------
 function calculate_worm_pairs(humans)
     return min(sum(humans.female_worms), sum(humans.male_worms))
 end

@@ -2,12 +2,10 @@
 % Please edit documentation in R/schistox_functions.R
 \name{load_population_from_file}
 \alias{load_population_from_file}
-\title{load_population_from_file(filename)
-load the environmental variables saved in the specified file}
+\title{load the environmental variables saved in the specified file}
 \usage{
 load_population_from_file(filename)
 }
 \description{
-load_population_from_file(filename)
 load the environmental variables saved in the specified file
 }

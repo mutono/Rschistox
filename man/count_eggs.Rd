@@ -2,12 +2,12 @@
 % Please edit documentation in R/schistox_functions.R
 \name{count_eggs}
 \alias{count_eggs}
-\title{count number of eggs ----------------------------------------------------
+\title{count number of eggs
 count the total number of eggs in the human population}
 \usage{
 count_eggs(humans)
 }
 \description{
-count number of eggs ----------------------------------------------------
+count number of eggs
 count the total number of eggs in the human population
 }
