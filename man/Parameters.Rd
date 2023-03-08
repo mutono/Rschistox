@@ -55,6 +55,9 @@ Parameters(
 )
 }
 \description{
+This function takes in all the parameters for the model
+}
+\details{
 @param N human population size
    @param time_step length of time step (in days)
    @param N_communities number of communities in the population sharing the same environmental source

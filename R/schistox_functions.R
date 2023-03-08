@@ -58,8 +58,10 @@ Human <- function(age,death_age,gender,predisposition,female_worms,male_worms,
 
 #' Parameters function
 #'
-#'    @param N human population size
-#'    @param time_step length of time step (in days)
+#' This function takes in all the parameters for the model
+#'
+#' @param N human population size
+#' @param time_step length of time step (in days)
 #'    @param N_communities number of communities in the population sharing the same environmental source
 #'    @param community_probs probability of being in each community
 #'    @param community_contact_rate contact rate with the environment for each of the commununity
