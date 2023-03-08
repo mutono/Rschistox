@@ -22,7 +22,8 @@ After this, you can run the following to install the package:
 ```
 
 Introduction
-The Rschistox package uses a stochastic individual based model to simulate the cycle of the disease from the environment to the human body and back, as shown in the graphic below
+The Rschistox package uses a stochastic individual based model to simulate the cycle of the disease from the environment to the human body and back, as shown in the graphic below, as also seen in this publication: https://doi.org/10.1016/j.idm.2021.01.010
 
-![Schematic representation of the structure of the model: https://www.sciencedirect.com/science/article/pii/S2468042721000130#fig1](https://user-images.githubusercontent.com/1639913/223716763-1cf2af7a-9524-4838-a902-d279cdcf4030.png)
+
+![https://doi.org/10.1016/j.idm.2021.01.010](https://user-images.githubusercontent.com/1639913/223716763-1cf2af7a-9524-4838-a902-d279cdcf4030.png)
 
