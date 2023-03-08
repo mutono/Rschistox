@@ -104,7 +104,7 @@ Parameters <- function(N=500, time_step=20, N_communities=1, community_probs=1,
                        community_contact_rate=1, density_dependent_fecundity=0.0007,
                        average_worm_lifespan=5.7, max_age=100, initial_worms=10,
                        initial_miracidia=1e+08, initial_miracidia_days=1, init_env_cercariae=1e+08,
-                       worm_stages=1, contact_rate=0.18, max_fec_contact_rate_product=0.8, max_fecundity=20, age_contact_rates=input_contact_rates/sum(input_contact_rates),
+                       worm_stages=1, contact_rate=0.18, max_fec_contact_rate_product=0.8, max_fecundity=20, age_contact_rates,
                        ages_for_contacts=c(4, 9, 15, 100), contact_rate_by_age_array=rep(0,times=max_age+1), mda_adherence=1,
                        mda_access=1, female_factor=1, male_factor=1, miracidia_maturity=24,
                        birth_rate=28*time_step/(1000*365), human_cercariae_prop=1, predis_aggregation=0.24, cercariae_survival=0.05,
@@ -135,7 +135,7 @@ Parameters <- function(N=500, time_step=20, N_communities=1, community_probs=1,
   contact_rate <-as.numeric(contact_rate)
   max_fec_contact_rate_product <- as.numeric(max_fec_contact_rate_product)
   max_fecundity <- as.numeric(max_fecundity)
-  age_contact_rates <- as.array(as.numeric(age_contact_rates))
+  age_contact_rates <- input_contact_rates/sum(input_contact_rates)
   ages_for_contacts <- as.array(as.integer(ages_for_contacts))
   contact_rate_by_age_array <- as.array(as.numeric(contact_rate_by_age_array))
   mda_adherence <- as.numeric(mda_adherence)
