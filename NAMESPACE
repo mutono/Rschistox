@@ -2,4 +2,4 @@ exportPattern("^[[:alpha:]]+")
 
 export("Rschistox")
 
-import(tidyverse)
+import("ggplot2")
