@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{mda_information}
 \alias{mda_information}
-\title{mda_information ---------------------------------------------------------
+\title{mda_information
 This function contains the information for the mda, storing the coverage, minimum and maximum age targeted,
 gender, drug efficacy and the time for the mda to be done}
 \usage{
@@ -17,7 +17,7 @@ mda_information(
 )
 }
 \description{
-mda_information ---------------------------------------------------------
+mda_information
 This function contains the information for the mda, storing the coverage, minimum and maximum age targeted,
 gender, drug efficacy and the time for the mda to be done
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{out}
 \alias{out}
-\title{Out function -----------------------------------------------------------
+\title{out
 This function contains the different outputs we are interested in recording. This is the
 overall population burden, with categories for low, moderate and heavy burdens, along with
 separate categories for the school age children and adults. Along with these, the time of each
@@ -23,7 +23,7 @@ out(
 )
 }
 \description{
-Out function -----------------------------------------------------------
+out
 This function contains the different outputs we are interested in recording. This is the
 overall population burden, with categories for low, moderate and heavy burdens, along with
 separate categories for the school age children and adults. Along with these, the time of each

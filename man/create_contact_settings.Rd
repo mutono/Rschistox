@@ -2,7 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{create_contact_settings}
 \alias{create_contact_settings}
-\title{Contact settings --------------------------------------------------------
+\title{Contact settings
 create the age specific contact settings given the scenario
 This will create age dependent contact rates based on the scenario for simulation which is input. This is either
    "low adult", "moderate adult" or "high adult"}
@@ -10,7 +10,7 @@ This will create age dependent contact rates based on the scenario for simulatio
 create_contact_settings(scenario)
 }
 \description{
-Contact settings --------------------------------------------------------
+Contact settings
 create the age specific contact settings given the scenario
 This will create age dependent contact rates based on the scenario for simulation which is input. This is either
    "low adult", "moderate adult" or "high adult"

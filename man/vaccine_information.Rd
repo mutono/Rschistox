@@ -2,14 +2,14 @@
 % Please edit documentation in R/schistox_functions.R
 \name{vaccine_information}
 \alias{vaccine_information}
-\title{vaccine_information -----------------------------------------------------
-This struct contains the information for the vaccine, storing the coverage, minimum and maximum age targeted,
+\title{vaccine_information
+This function contains the information for the vaccine, storing the coverage, minimum and maximum age targeted,
 gender, drug efficacy and the time for the vaccine to be done along with how long the vaccine provides protection for}
 \usage{
 vaccine_information(coverage, min_age, max_age, gender, duration, time)
 }
 \description{
-vaccine_information -----------------------------------------------------
-This struct contains the information for the vaccine, storing the coverage, minimum and maximum age targeted,
+vaccine_information
+This function contains the information for the vaccine, storing the coverage, minimum and maximum age targeted,
 gender, drug efficacy and the time for the vaccine to be done along with how long the vaccine provides protection for
 }

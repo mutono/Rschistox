@@ -2,10 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{Human}
 \alias{Human}
-\title{Human -------------------------------------------------------------------
-This struct contains the information about a human individual. This contains age, the pre determined age of death, community they are in,
-   their gender, predisposition to picking up cercariae, the number of larvae, female and male worms and eggs in the individual along with
-   a count of total lifetime eggs. Also it has their age dependent contact rate, adherence and access to interventions.}
+\title{Human}
 \usage{
 Human(
   age,
@@ -29,8 +26,7 @@ Human(
 )
 }
 \description{
-Human -------------------------------------------------------------------
-This struct contains the information about a human individual. This contains age, the pre determined age of death, community they are in,
-   their gender, predisposition to picking up cercariae, the number of larvae, female and male worms and eggs in the individual along with
-   a count of total lifetime eggs. Also it has their age dependent contact rate, adherence and access to interventions.
+This function contains the information about a human individual. This contains age, the pre determined age of death, community they are in,
+their gender, predisposition to picking up cercariae, the number of larvae, female and male worms and eggs in the individual along with
+a count of total lifetime eggs. Also it has their age dependent contact rate, adherence and access to interventions.
 }

@@ -54,7 +54,7 @@ drug_effectiveness <- 0.86 # efficacy of a drug given during MDA
 spec_ages <- c(7639, 7082, 6524, 5674, 4725, 4147, 3928, 3362,
                2636, 1970, 1468, 1166, 943, 718, 455, 244) #number of individuals by age group
 ages_per_index <- 5 #how many different ages we include in the spec_ages parameter
-record_frequency <- 1/24 #how often we should record the prevalence in the population dusing simulation
+record_frequency <- 1/24 #how often we should record the prevalence in the population during simulation
 use_kato_katz <- 0 #if 1, use Kato-Katz for egg count, if 0, do not use KK
 kato_katz_par <- 0.87 #parameter for Gamma distribution if KK is used
 scenario <- "moderate adult" #can be one of "low adult", "moderate adult" or high adult"
