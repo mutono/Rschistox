@@ -90,7 +90,7 @@ heavy_burden_threshold <- 50 #number of eggs at which an individual is said to h
 
 ```
 
-We pass the updated parameters to the `r Parameters()` function
+We pass the updated parameters to the Parameters() function
 
 ```{r}
 pars <- Parameters(N, time_step, N_communities, community_probs,
