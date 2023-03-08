@@ -1,7 +1,7 @@
 # Rschistox
 
 This is a package for modelling schistosomiasis treatment in low to high prevalence settings. 
-The model can be used for both S.haematobium and S. mansoni, and also for treatment of:
+The model can be used for both *S.haematobium* and S. mansoni, and also for treatment of:
 - Pre school aged children (pre-SAC)
 - School aged children (SAC)
 - Adult population
