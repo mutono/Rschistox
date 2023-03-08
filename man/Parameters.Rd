@@ -2,54 +2,7 @@
 % Please edit documentation in R/schistox_functions.R
 \name{Parameters}
 \alias{Parameters}
-\title{Parameters function -----------------------------------------------------
-   @param N human population size
-   @param time_step length of time step (in days)
-   @param N_communities number of communities in the population sharing the same environmental source
-   @param community_probs probability of being in each community
-   @param community_contact_rate contact rate with the environment for each of the commununity
-   @param density_dependent_fecundity decrease in egg production per worm due to high density of worms
-   @param average_worm_lifespan average expectancy of a worm
-   @param max_age maximum age of individual
-   @param initial_worms initial no. of worms
-   @param initial_miracidia  initial no. of miracidia in the environment
-   @param initial_miracidia_days no.of days miracidia will age into cercariae larvae
-   @param init_env_cercariae initial no of cercaria in the environment
-   @param worm_stages number of stages in the worm. Having 1 stage will result to a Gamma distribution
-   @param contact_rate global contact rate for the uptake of larvae from the environment
-   @param max_fec_contact_rate_product product of max fecundity and the contact rate in the population. Setting this to a desired value is often a good way to ensure that the epidemic stays within a reasonable range, as when the max fecundity increases, if the contact rate doesn't decrease appropriately, then the behaviour of the outbreak can be unrealistically difficult to control.
-   @param max_fecundity expected no. of eggs from a single worm
-   @param age_contact_rates contact rate for the uptake of larvae from the environment for the chosen age groups
-   @param ages_for_contacts  age groups for specifying contact rates
-   @param contact_rate_by_age_array <- rep(0,times=max_age+1) array holding contact rate for each age
-   @param mda_adherence proportion of people who adhere to the MDA
-   @param mda_access proportion of people who have access to the MDA
-   @param female_factor factor for altering the contact rate for females, if we choose to have gender-specific behavior which affects contact rate
-   @param male_factor factor for altering the contact rate for males, if we choose to have gender-specific behavior which affects contact rate
-   @param miracidia_maturity no of days after which miracidias will mature to cercariae
-   @param birth_rate rate of birth of humans
-   @param human_cercariae_prop proportion of cercariae which are able to infect humans
-   @param predis_aggregation aggregation parameter for Poisson distributed egg production
-   @param cercariae_survival proportion of cercariae that survive from one time point to the next
-   @param miracidia_survival proportion of miracidia that survive from one time point to the next
-   @param death_prob_by_age probability of dying each year, specified by age
-   @param ages_for_death age ranges for death probailities
-   @param r aggregation parameter for negative binomially distributed egg production
-   @param vaccine_effectiveness efficacy of a vaccine if one is used
-   @param drug_effectiveness efficacy of a drug given during MDA
-   @param spec_ages number of individuals by age group
-   @param ages_per_index how many different ages we include in the spec_ages parameter
-   @param record_frequency how often we should record the prevalence in the population dusing simulation
-   @param use_kato_katz if 1, use Kato-Katz for egg count, if 0, do not use KK
-   @param kato_katz_par parameter for Gamma distribution if KK is used
-   @param heavy_burden_threshold number of eggs at which an individual is said to have a heavy infection
-   @param rate_acquired_immunity rate at which immunity will be acquired for individuals. This will be multiplied by the cumulative nymber of worms people have had during their life to decide the level of immunity acquired
-   @param M0 if a particular formula of egg production is used, this parameter is required and is a proxy for mean worm burden
-   @param human_larvae_maturity_time length of time (in days) after which a cercariae uptake by a human will mature into a worm
-   @param egg_sample_size the proportion of eggs which are sampled from each individual every time we check their burden (between 0 and 1). 1= all eggs in the person are sampled. Typical value fpr a urine sample may be ~1/100
-   @param input_ages input ages for contructing contact array
-   @param input_contact_rates input contact rates
-   @param scenario can be one of "low adult", "moderate adult" or high adult"}
+\title{Parameters function}
 \usage{
 Parameters(
   N,
@@ -102,8 +55,7 @@ Parameters(
 )
 }
 \description{
-Parameters function -----------------------------------------------------
-   @param N human population size
+@param N human population size
    @param time_step length of time step (in days)
    @param N_communities number of communities in the population sharing the same environmental source
    @param community_probs probability of being in each community
