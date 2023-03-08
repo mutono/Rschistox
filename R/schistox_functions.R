@@ -1,8 +1,8 @@
 library(devtools)
-use_git()
+#use_git()
 
 ## load all R scripts
-load_all()
+#load_all()
 
 ## define functions for schistox
 
@@ -74,22 +74,16 @@ Human <- function(age,death_age,gender,predisposition,female_worms,male_worms,
 #'    @param max_fec_contact_rate_product product of max fecundity and the contact rate in the population. Setting this to a desired value is often a good way to ensure that the epidemic stays within a reasonable range, as when the max fecundity increases, if the contact rate doesn't decrease appropriately, then the behaviour of the outbreak can be unrealistically difficult to control.
 #'    @param max_fecundity expected no. of eggs from a single worm
 #'    @param age_contact_rates contact rate for the uptake of larvae from the environment for the chosen age groups
-
-
-#'    #'    @param egg_production_distribution Distribution for egg production, either "Poisson" or "NegBin"
-#'    @param input_contact_rates input contact rates
-#'    @param input_ages input ages for contructing contact array
 #'    @param ages_for_contacts  age groups for specifying contact rates
 #'    @param contact_rate_by_age_array <- rep(0,times=max_age+1) array holding contact rate for each age
 #'    @param mda_adherence proportion of people who adhere to the MDA
 #'    @param mda_access proportion of people who have access to the MDA
-#'    @param last_uptake last uptake of MDA
-#'    @param egg_multiplier <- 100 #??
-#'    @param sd_decrease <- 1 #??
 #'    @param female_factor factor for altering the contact rate for females, if we choose to have gender-specific behavior which affects contact rate
 #'    @param male_factor factor for altering the contact rate for males, if we choose to have gender-specific behavior which affects contact rate
+#'    @param miracidia_maturity no of days after which miracidias will mature to cercariae
 #'    @param birth_rate rate of birth of humans
 #'    @param human_cercariae_prop proportion of cercariae which are able to infect humans
+#'    @param predis_aggregation aggregation parameter for Poisson distributed egg production
 #'    @param cercariae_survival proportion of cercariae that survive from one time point to the next
 #'    @param miracidia_survival proportion of miracidia that survive from one time point to the next
 #'    @param death_prob_by_age probability of dying each year, specified by age
@@ -102,19 +96,32 @@ Human <- function(age,death_age,gender,predisposition,female_worms,male_worms,
 #'    @param record_frequency how often we should record the prevalence in the population dusing simulation
 #'    @param use_kato_katz if 1, use Kato-Katz for egg count, if 0, do not use KK
 #'    @param kato_katz_par parameter for Gamma distribution if KK is used
+#'    @param heavy_burden_threshold number of eggs at which an individual is said to have a heavy infection
+#'    @param rate_acquired_immunity rate at which immunity will be acquired for individuals. This will be multiplied by the cumulative nymber of worms people have had during their life to decide the level of immunity acquired
+#'    @param M0 if a particular formula of egg production is used, this parameter is required and is a proxy for mean worm burden
+#'    @param human_larvae_maturity_time length of time (in days) after which a cercariae uptake by a human will mature into a worm
+#'    @param egg_sample_size the proportion of eggs which are sampled from each individual every time we check their burden (between 0 and 1). 1= all eggs in the person are sampled. Typical value fpr a urine sample may be ~1/100
+#'    @param input_ages input ages for contructing contact array
+#'    @param input_contact_rates input contact rates
 #'    @param scenario can be one of "low adult", "moderate adult" or high adult"
 
+
+
+
+
+
+
+#    @param egg_production_distribution Distribution for egg production, either "Poisson" or "NegBin"
+#    @param last_uptake last uptake of MDA
+#    @param egg_multiplier <- 100 #??
+#    @param sd_decrease <- 1 #??
+
+
 ## main parameters that we change
-predis_aggregation <- 0.24 # 0.24 for high prev settings; 0.04 for low prev settings # From "The design of schistosomiasis monitoring and evaluation programmes:
 #The importance of collecting adult data to inform treatment strategies for Schistosoma mansoni". aggregation for predisposition of individuals to uptake laevale. This is chosen from a Gamma distribution with mean 1 for each individual and set for life. If high, the aggregation is low, meaning individuals have roughly the same predisposition. If low, larvae become concentrated in a few individuals.
-max_fecundity <- 20 # expected no. of eggs from a single worm
-max_fec_contact_rate_product <- 2 #product of max fecundity and the contact rate in the population. Setting this to a desired value is often a good way to ensure that the epidemic stays within a reasonable range, as when the max fecundity increases, if the contact rate doesn't decrease appropriately, then the behaviour of the outbreak can be unrealistically difficult to control.
-contact_rate <- max_fec_contact_rate_product / max_fecundity #global contact rate for the uptake of larvae from the environment
-M0 <- 20 #if a particular formula of egg production is used, this parameter is required and is a proxy for mean worm burden
-rate_acquired_immunity <- 0 # rate at which immunity will be acquired for individuals. This will be multiplied by the cumulative nymber of worms people have had during their life to decide the level of immunity acquired
-human_larvae_maturity_time <- 30 # length of time (in days) after which a cercariae uptake by a human will mature into a worm
-egg_sample_size <- 1/100 #the proportion of eggs which are sampled from each individual every time we check their burden (between 0 and 1). 1= all eggs in the person are sampled. Typical value fpr a urine sample may be ~1/100
-heavy_burden_threshold <- 50 #number of eggs at which an individual is said to have a heavy infection
+#max_fecundity <- 20 # expected no. of eggs from a single worm
+#max_fec_contact_rate_product <- 2 #product of max fecundity and the contact rate in the population. Setting this to a desired value is often a good way to ensure that the epidemic stays within a reasonable range, as when the max fecundity increases, if the contact rate doesn't decrease appropriately, then the behaviour of the outbreak can be unrealistically difficult to control.
+#contact_rate <- max_fec_contact_rate_product / max_fecundity #global contact rate for the uptake of larvae from the environment
 
 #' @export
 Parameters <- function(N, time_step, N_communities, community_probs,
@@ -203,10 +210,10 @@ Parameters <- function(N, time_step, N_communities, community_probs,
 
 #'  Out function -----------------------------------------------------------
 
-#' This struct contains the different outputs we are interested in recording. This is the
+#' This function contains the different outputs we are interested in recording. This is the
 #' overall population burden, with categories for low, moderate and heavy burdens, along with
 #' separate categories for the school age children and adults. Along with these, the time of each
-#' result is recorded, so we can subsequently see the prevalence of the otubreak over time.
+#' result is recorded, so we can subsequently see the prevalence of the outbreak over time.
 #' @export
 out <- function(population_burden,sac_burden,adult_burden, pop_prev, sac_prev,
                 adult_prev, sac_pop, adult_pop, final_ages, recorded_eggs, time){
@@ -683,10 +690,9 @@ cercariae_uptake <-function(humans, cercariae, miracidia, pars){
   #' cercariae uptake human larvae -------------------------------------------
 
 
-#'cercariae_uptake_human_larvae!(humans, cercariae, miracidia, pars)
 
 #'uptake cercariae into humans, whilst updating cercariae with matured miracidia.
-#'Uptaken cercariae become larvae within humans, rather than immmediately into worms with this function.
+#'Uptaken cercariae become larvae within humans, rather than immediately into worms with this function.
 #' @export
 cercariae_uptake_with_human_larvae <-function(humans, cercariae, miracidia, pars){
 
@@ -760,7 +766,7 @@ enact_maturity_function_true <-  function(h){
 
   #' Human larvae maturity ---------------------------------------------------
 
-#' human_larvae_maturity(humans, pars)
+
 
 #' This will mature the human larvae into worms after a chosen number of days, which is specified
 #' by the human_larvae_maturity_time parameter in the pars struct
@@ -802,10 +808,9 @@ human_larvae_maturity <- function(humans, pars){
 
 }
 
-  #' Kill miracidia in the environment ---------------------------------------
+#' Kill miracidia in the environment ---------------------------------------
 
 
-#'    miracidia_death!(miracidia, pars)
 
 #' Kill a chosen proportion of miracidia in the environment governed by the
 #' miracidia_survival parameter in the pars struct
@@ -1047,7 +1052,7 @@ else{
     p = NB_r/(NB_r+mean_eggs)
 
     #' choose from NB
-    eggs = rand(NegativeBinomial(NB_r,p))
+    eggs = sample(NegativeBinomial(NB_r,p))
   }
 
   else{
@@ -1124,7 +1129,7 @@ miracidia_production <- function(humans){
 
 
 
-  #' Death of humans ---------------------------------------------------------
+#' Death of humans ---------------------------------------------------------
 #' @export
 death_of_human <- function(humans){
 
@@ -1140,7 +1145,7 @@ death_of_human <- function(humans){
   return(humans)
 
 }
-  #' Birth of humans
+#' Birth of humans
 
 
 #' add an individual to the population
@@ -1217,11 +1222,11 @@ birth_of_human <-  function(humans, pars){
 
 }
 
-  ##' Administer drugs
+##' Administer drugs
 
 
-  #' function to administer drug to a specific variable (e.g. female_worms or eggs).
-  #' input the variable, the indices to apply to and the effectiveness of treatment
+#' function to administer drug to a specific variable (e.g. female_worms or eggs).
+#' input the variable, the indices to apply to and the effectiveness of treatment
 
 
 #'    administer_drug(humans, indices, drug_effectiveness)
@@ -1243,11 +1248,11 @@ administer_drug <-  function(humans, indices, drug_effectiveness){
   return(humans)
 
 }
-  #' Administer vaccine ------------------------------------------------------
+#' Administer vaccine ------------------------------------------------------
 
 
-  #' function to administer drug to a specific variable (e.g. female_worms or eggs).
-  #' input the variable, the indices to apply to and the effectiveness of treatment
+#' function to administer drug to a specific variable (e.g. female_worms or eggs).
+#' input the variable, the indices to apply to and the effectiveness of treatment
 
 #'    administer_vaccine(humans, indices, vaccine_effectiveness, vaccine_duration)
 
@@ -1341,26 +1346,28 @@ update_mda <-  function(mda_info, mda_round){
 
 }
 
-  #' create MDA --------------------------------------------------------------
+#' create MDA --------------------------------------------------------------
 
 
-  #' function to create a set of mda's which will be performed regularly
- #' first_mda_time specifies when this will first occur in years,
-  #'last_mda_time is the final mda in this block
-  #'regularity is how often to perform the mda in years.
-  #'specify the proportion of pre SAC, SAC and adults at each of these time points
-  #'also specify genders for these differect age groups, along with the effectiveness of mda
-  #
+#' function to create a set of mda's which will be performed regularly
+#' first_mda_time specifies when this will first occur in years,
+#'last_mda_time is the final mda in this block
+#'regularity is how often to perform the mda in years.
+#'specify the proportion of pre SAC, SAC and adults at each of these time points
+#'also specify genders for these differect age groups, along with the effectiveness of mda
+
 
 #    create_mda(pre_SAC_prop, SAC_prop, adult_prop, first_mda_time,
 #            last_mda_time, regularity, pre_SAC_gender, SAC_gender, adult_gender, mda_effectiveness)
 
-#function to create a set of mda's which will be performed regularly
-#        first_mda_time specifies when this will first occur in years,
-#        last_mda_time is the final mda in this block
-#        regularity is how often to perform the mda in years.
-#        specify the proportion of pre SAC, SAC and adults at each of these time points
-#        also specify genders for these differect age groups, along with the effectiveness of mda
+#' function to create a set of mda's which will be performed regularly
+#' @param first_mda_time specifies when mda will first be administered in years
+#' @param last_mda_time is the final mda in this block
+#' @param regularity is how often to perform the mda in years
+#' @param pre_SAC_prop is the proportion of pre SAC given treatment at each of the time points
+#' @param SAC_prop is the proportion of SAC given treatment at each of the time points
+#' @param adult_prop is the proportion of adults given treatment at each of the time points
+#        also specify genders for these different age groups, along with the effectiveness of mda
 #' @export
 create_mda <-  function(pre_SAC_prop, SAC_prop, adult_prop, first_mda_time,
                       last_mda_time, regularity, pre_SAC_gender, SAC_gender, adult_gender, mda_effectiveness){
@@ -1602,10 +1609,10 @@ get_prevalences <-  function(humans, time, pars){
 
 
 }
-  #' save population to file -------------------------------------------------
+#' save population to file -------------------------------------------------
 
 
-  #' save the enironment variables in a specified file
+#' save the enironment variables in a specified file
 #' @export
 save_population_to_file <- function(filename, humans, miracidia, cercariae, pars){
     data <- tibble("humans"= humans,  "miracidia"=miracidia, "cercariae"=cercariae, "pars"= pars)
@@ -1616,7 +1623,7 @@ save_population_to_file <- function(filename, humans, miracidia, cercariae, pars
 
 
 
-#'    load_population_from_file(filename)
+#' load_population_from_file(filename)
 
 #' load the environmental variables saved in the specified file
 #' @export
@@ -1634,12 +1641,9 @@ load_population_from_file <- function(filename){
 
 
 
-  #' generate a distribution for ages ----------------------------------------
+#' generate a distribution for ages ----------------------------------------
 
-
-  #' function to generate a distribution for ages based on a specified demography
-
-#    generate_age_distribution(pars)
+#' function to generate a distribution for ages based on a specified demography
 
 #' generate population numbers for each age in
 
@@ -1660,12 +1664,11 @@ generate_age_distribution <-  function(pars)
 
 
 
-  #' construct the set of ages -----------------------------------------------
+#' construct the set of ages -----------------------------------------------
 
+#' function to construct the set of ages, with size N
 
-  #' function to construct the set of ages, with size N
-
-#'    specified_age_distribution(pars)
+#' specified_age_distribution(pars)
 
 #' output ages according to a specified age distribution
 #' @export
@@ -1735,7 +1738,7 @@ update_env_to_equilibrium <-  function(num_time_steps, humans, miracidia, cercar
 
 
 
-#'    update_env_to_equilibrium_human_larvae(num_time_steps, humans, miracidia, cercariae, pars)
+#'update_env_to_equilibrium_human_larvae(num_time_steps, humans, miracidia, cercariae, pars)
 
 #'update the population for a given length of time. Here we do not age the population or include birth, deaths or interventions and for this
 #'function larvae are uptaken from the environment into a larvae category in the humans, rather than immediately becoming worms
@@ -1780,10 +1783,10 @@ update_env_to_equilibrium_human_larvae <-  function(num_time_steps, humans, mira
 }
 
 
-  #' update environment to equilibrium ---------------------------------------
+#' update environment to equilibrium ---------------------------------------
 
 
-#'    update_env_to_equilibrium_increasing(num_time_steps, humans, miracidia, cercariae, pars)
+#' update_env_to_equilibrium_increasing(num_time_steps, humans, miracidia, cercariae, pars)
 
 #' update the population for a given length of time. Here we do not age the population or include birth, deaths or interventions and for this
 #' function larvae are uptaken from the environment immediately to worms and eggs are produced using a monotonically increasing function
@@ -1813,14 +1816,14 @@ update_env_to_equilibrium_increasing <- function(num_time_steps, humans, miracid
 
   append(miracidia, miracidia_production(humans))
 
-  #'  uptake larvae into humans from the environment
+#'  uptake larvae into humans from the environment
   humans = cercariae_uptake(humans, cercariae, miracidia, pars)
   cercariae= cercariae_uptake(humans, cercariae, miracidia, pars)
    miracidia = cercariae_uptake(humans, cercariae, miracidia, pars)
 
-  #'  kill miracidia in the environment at specified death rate
+#'  kill miracidia in the environment at specified death rate
   miracidia =  miracidia_death(miracidia, pars)
-  #'  kill cercariae in the environment at specified death rate
+#'  kill cercariae in the environment at specified death rate
   cercariae =   cercariae_death(cercariae, miracidia, pars)
 
 }
