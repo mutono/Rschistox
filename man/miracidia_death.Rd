@@ -3,7 +3,6 @@
 \name{miracidia_death}
 \alias{miracidia_death}
 \title{Kill miracidia in the environment ---------------------------------------
-   miracidia_death!(miracidia, pars)
 Kill a chosen proportion of miracidia in the environment governed by the
 miracidia_survival parameter in the pars struct}
 \usage{
@@ -11,7 +10,6 @@ miracidia_death(miracidia, pars)
 }
 \description{
 Kill miracidia in the environment ---------------------------------------
-   miracidia_death!(miracidia, pars)
 Kill a chosen proportion of miracidia in the environment governed by the
 miracidia_survival parameter in the pars struct
 }

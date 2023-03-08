@@ -8,7 +8,8 @@ first_mda_time specifies when this will first occur in years,
 last_mda_time is the final mda in this block
 regularity is how often to perform the mda in years.
 specify the proportion of pre SAC, SAC and adults at each of these time points
-also specify genders for these differect age groups, along with the effectiveness of mda}
+also specify genders for these differect age groups, along with the effectiveness of mda
+function to create a set of mda's which will be performed regularly}
 \usage{
 create_mda(
   pre_SAC_prop,
@@ -23,6 +24,19 @@ create_mda(
   mda_effectiveness
 )
 }
+\arguments{
+\item{pre_SAC_prop}{is the proportion of pre SAC given treatment at each of the time points}
+
+\item{SAC_prop}{is the proportion of SAC given treatment at each of the time points}
+
+\item{adult_prop}{is the proportion of adults given treatment at each of the time points}
+
+\item{first_mda_time}{specifies when mda will first be administered in years}
+
+\item{last_mda_time}{is the final mda in this block}
+
+\item{regularity}{is how often to perform the mda in years}
+}
 \description{
 create MDA --------------------------------------------------------------
 function to create a set of mda's which will be performed regularly
@@ -31,4 +45,5 @@ last_mda_time is the final mda in this block
 regularity is how often to perform the mda in years.
 specify the proportion of pre SAC, SAC and adults at each of these time points
 also specify genders for these differect age groups, along with the effectiveness of mda
+function to create a set of mda's which will be performed regularly
 }

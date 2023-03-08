@@ -4,7 +4,7 @@
 \alias{specified_age_distribution}
 \title{construct the set of ages -----------------------------------------------
 function to construct the set of ages, with size N
-   specified_age_distribution(pars)
+specified_age_distribution(pars)
 output ages according to a specified age distribution}
 \usage{
 specified_age_distribution(pars)
@@ -12,6 +12,6 @@ specified_age_distribution(pars)
 \description{
 construct the set of ages -----------------------------------------------
 function to construct the set of ages, with size N
-   specified_age_distribution(pars)
+specified_age_distribution(pars)
 output ages according to a specified age distribution
 }

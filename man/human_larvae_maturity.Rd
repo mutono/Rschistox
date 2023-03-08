@@ -3,7 +3,6 @@
 \name{human_larvae_maturity}
 \alias{human_larvae_maturity}
 \title{Human larvae maturity ---------------------------------------------------
-human_larvae_maturity(humans, pars)
 This will mature the human larvae into worms after a chosen number of days, which is specified
 by the human_larvae_maturity_time parameter in the pars struct}
 \usage{
@@ -11,7 +10,6 @@ human_larvae_maturity(humans, pars)
 }
 \description{
 Human larvae maturity ---------------------------------------------------
-human_larvae_maturity(humans, pars)
 This will mature the human larvae into worms after a chosen number of days, which is specified
 by the human_larvae_maturity_time parameter in the pars struct
 }
