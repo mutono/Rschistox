@@ -518,7 +518,7 @@ create_population <- function(pars){
 create_population_specified_ages <- function(pars){
 
   if (length(pars$community_probs) != pars$N_communities){
-    error("must provide probabilities for membership of each community")
+    print("must provide probabilities for membership of each community")
   }
   else{
     community_selection <- 1
@@ -535,13 +535,13 @@ create_population_specified_ages <- function(pars){
   }
   cercariae <- pars$init_env_cercariae
   #' initialize the Gamma distribution for predisposition selection
-  pre <- rgamma(pars$predis_aggregation, 1/pars$predis_aggregation)
+  pre <- rgamma(1,pars$predis_aggregation, 1/pars$predis_aggregation)
 
   #' select all predispositions
   predisposition <- runif(1,min=pre, max=pars$N)
 
 
-  for (i in 1:pars$N){
+   for (i in 1:pars$N){
 
     f_worms <- array(rep(0, pars$worm_stages))
     f_worms[1] <- trunc(round(runif(1)*pars$initial_worms))
@@ -556,10 +556,10 @@ create_population_specified_ages <- function(pars){
     community <- community_selection[community_selection> runif(1)][1]
 
     death_age <- get_death_age(pars)
-    humans<- append(humans, Human(ages[i]+rand(), death_age, runif(1,min=0,max=1), predisposition[i],
+    humans<- append(humans, Human(ages[i]+runif(1), death_age, runif(1,min=0,max=1), predisposition[i],
                                  f_worms, m_worms,
                                  0, 0, 0, adherence, access, community, 0, 0,0,0, 0, 0))
-
+}
     age <- trunc(as.numeric(tail(data.frame(humans)$age,1)))
 
     contact_rate_age = pars$ages_for_contacts[pars$ages_for_contacts>age][1]
@@ -572,7 +572,7 @@ create_population_specified_ages <- function(pars){
     as.numeric(tail(data.frame(humans)$uptake_rate,1)) = as.numeric(tail(data.frame(humans)$predisposition,1)) * pars$contact_rate * as.numeric(tail(data.frame(humans)$age_contact_rate,1)) *
       pars$community_contact_rate[community]
 
-  }
+
   humans <- generate_ages_and_deaths(20000, humans, pars)
   humans <- update_contact_rate(humans,  pars)
   return(humans, miracidia, cercariae)
@@ -1625,7 +1625,7 @@ specified_age_distribution <-function(pars)
   for (i in 1:pars$N)
   {
     x = runif(1)
-    k = findall(cumsum_spec_ages > x)[1]
+    k = cumsum_spec_ages[cumsum_spec_ages > x][1]
     append(ages, k-1)
   }
 
