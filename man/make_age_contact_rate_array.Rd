@@ -4,18 +4,22 @@
 \alias{make_age_contact_rate_array}
 \title{Age dependent contact rate
 This is a function to get age dependent contact rate.
-the contact rates are taken from the
-"What is required in terms of mass drug administration to interrupt the transmission
-    of schistosome parasites in regions of endemic infection?" paper
-at some point we may change this to be an input from a file instead}
+This will make the contact rate array for each age of individual in the population, based either on a scenario basis
+ ("low adult", "moderate adult" or "high adult"), through the create_contact_settings function, or through
+ specifying an array of age breaks and the desired contact rates for the ages specified by the ages, using the
+ input_ages and input_contact_rates variables.
+ For example: input_contact_rates = [0.02,0.61, 1,0.06], input_ages= [4,9,15,100] will make 0-4 year olds have contact rate 0.02,
+ 5-9 will have rate 0.61, 10-15 rate 1 and 16+ 0.06}
 \usage{
 make_age_contact_rate_array(pars, scenario, input_ages, input_contact_rates)
 }
 \description{
 Age dependent contact rate
 This is a function to get age dependent contact rate.
-the contact rates are taken from the
-"What is required in terms of mass drug administration to interrupt the transmission
-    of schistosome parasites in regions of endemic infection?" paper
-at some point we may change this to be an input from a file instead
+This will make the contact rate array for each age of individual in the population, based either on a scenario basis
+ ("low adult", "moderate adult" or "high adult"), through the create_contact_settings function, or through
+ specifying an array of age breaks and the desired contact rates for the ages specified by the ages, using the
+ input_ages and input_contact_rates variables.
+ For example: input_contact_rates = [0.02,0.61, 1,0.06], input_ages= [4,9,15,100] will make 0-4 year olds have contact rate 0.02,
+ 5-9 will have rate 0.61, 10-15 rate 1 and 16+ 0.06
 }

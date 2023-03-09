@@ -2,16 +2,11 @@
 % Please edit documentation in R/schistox_functions.R
 \name{cercariae_uptake}
 \alias{cercariae_uptake}
-\title{Cercariae uptake
-cercariae_uptake(humans, cercariae, miracidia, pars)
-uptake cercariae into humans, whilst updating cercariae with miracidia.
-Uptaken cercariae immediately become worms in this formulation}
+\title{Cercariae uptake}
 \usage{
 cercariae_uptake(humans, cercariae, miracidia, pars)
 }
 \description{
-Cercariae uptake
-cercariae_uptake(humans, cercariae, miracidia, pars)
 uptake cercariae into humans, whilst updating cercariae with miracidia.
 Uptaken cercariae immediately become worms in this formulation
 }

@@ -5,57 +5,53 @@
 \title{Parameters}
 \usage{
 Parameters(
-  N = 500,
-  time_step = 20,
-  N_communities = 1,
-  community_probs = 1,
-  community_contact_rate = 1,
-  density_dependent_fecundity = 7e-04,
-  average_worm_lifespan = 5.7,
-  max_age = 100,
-  initial_worms = 10,
-  initial_miracidia = 1e+08,
-  initial_miracidia_days = 1,
-  init_env_cercariae = 1e+08,
-  worm_stages = 1,
-  contact_rate = 0.18,
-  max_fec_contact_rate_product = 0.8,
-  max_fecundity = 20,
-  age_contact_rates = input_contact_rates/sum(input_contact_rates),
-  ages_for_contacts = c(4, 9, 15, 100),
-  contact_rate_by_age_array = rep(0, times = max_age + 1),
-  mda_adherence = 1,
-  mda_access = 1,
-  female_factor = 1,
-  male_factor = 1,
-  miracidia_maturity = 24,
-  birth_rate = 28 * time_step/(1000 * 365),
-  human_cercariae_prop = 1,
-  predis_aggregation = 0.24,
-  cercariae_survival = 0.05,
-  miracidia_survival = 0.05,
-  death_prob_by_age = c(0.0656, 0.0093, 0.003, 0.0023, 0.0027, 0.0038, 0.0044, 0.0048,
-    0.0053, 0.0065, 0.0088, 0.0106, 0.0144, 0.021, 0.0333, 0.0529, 0.0851, 0.1366,
-    0.2183, 0.2998, 0.3698, 1),
-  ages_for_death = c(1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80,
-    85, 90, 95, 100, 110),
-  r = 0.03,
-  vaccine_effectiveness = 0.86,
-  drug_effectiveness = 0.86,
-  spec_ages = c(7639, 7082, 6524, 5674, 4725, 4147, 3928, 3362, 2636, 1970, 1468, 1166,
-    943, 718, 455, 244),
-  ages_per_index = 5,
-  record_frequency = 1/24,
-  use_kato_katz = 0,
-  kato_katz_par = 0.87,
-  heavy_burden_threshold = 50,
-  rate_acquired_immunity = 0,
-  M0 = 20,
-  human_larvae_maturity_time = 30,
-  egg_sample_size = 1/100,
-  input_ages = c(4, 9, 15, 100),
-  input_contact_rates = c(0.01, 1.2, 1, 0.02),
-  scenario = "high adult"
+  N,
+  time_step,
+  N_communities,
+  community_probs,
+  community_contact_rate,
+  density_dependent_fecundity,
+  average_worm_lifespan,
+  max_age,
+  initial_worms,
+  initial_miracidia,
+  initial_miracidia_days,
+  init_env_cercariae,
+  worm_stages,
+  contact_rate,
+  max_fec_contact_rate_product,
+  max_fecundity,
+  age_contact_rates,
+  ages_for_contacts,
+  contact_rate_by_age_array,
+  mda_adherence,
+  mda_access,
+  female_factor,
+  male_factor,
+  miracidia_maturity,
+  birth_rate,
+  human_cercariae_prop,
+  predis_aggregation,
+  cercariae_survival,
+  miracidia_survival,
+  death_prob_by_age,
+  ages_for_death,
+  r,
+  vaccine_effectiveness,
+  drug_effectiveness,
+  spec_ages,
+  ages_per_index,
+  record_frequency,
+  use_kato_katz,
+  kato_katz_par,
+  heavy_burden_threshold,
+  rate_acquired_immunity,
+  M0,
+  human_larvae_maturity_time,
+  egg_sample_size,
+  input_ages,
+  input_contact_rates,
+  scenario
 )
 }
 \arguments{
@@ -119,7 +115,7 @@ Parameters(
 
 \item{death_prob_by_age}{probability of dying each year, specified by age}
 
-\item{ages_for_death}{age ranges for death probailities}
+\item{ages_for_death}{age ranges for death probabilities}
 
 \item{r}{aggregation parameter for negative binomially distributed egg production}
 
@@ -139,13 +135,13 @@ Parameters(
 
 \item{heavy_burden_threshold}{number of eggs at which an individual is said to have a heavy infection}
 
-\item{rate_acquired_immunity}{rate at which immunity will be acquired for individuals. This will be multiplied by the cumulative nymber of worms people have had during their life to decide the level of immunity acquired}
+\item{rate_acquired_immunity}{rate at which immunity will be acquired for individuals. This will be multiplied by the cumulative number of worms people have had during their life to decide the level of immunity acquired}
 
 \item{M0}{if a particular formula of egg production is used, this parameter is required and is a proxy for mean worm burden}
 
 \item{human_larvae_maturity_time}{length of time (in days) after which a cercariae uptake by a human will mature into a worm}
 
-\item{egg_sample_size}{the proportion of eggs which are sampled from each individual every time we check their burden (between 0 and 1). 1= all eggs in the person are sampled. Typical value fpr a urine sample may be ~1/100}
+\item{egg_sample_size}{the proportion of eggs which are sampled from each individual every time we check their burden (between 0 and 1). 1= all eggs in the person are sampled. Typical value for a urine sample may be ~1/100}
 
 \item{input_ages}{input ages for constructing contact array}
 

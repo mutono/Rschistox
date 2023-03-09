@@ -68,7 +68,7 @@ contact_rate <- max_fec_contact_rate_product / max_fecundity #global contact rat
 M0 <- 20 #if a particular formula of egg production is used, this parameter is required and is a proxy for mean worm burden
 rate_acquired_immunity <- 0 # rate at which immunity will be acquired for individuals. This will be multiplied by the cumulative nymber of worms people have had during their life to decide the level of immunity acquired
 human_larvae_maturity_time <- 30 # length of time (in days) after which a cercariae uptake by a human will mature into a worm
-egg_sample_size <- 1/100 #the proportion of eggs which are sampled from each individual every time we check their burden (between 0 and 1). 1= all eggs in the person are sampled. Typical value fpr a urine sample may be ~1/100
+egg_sample_size <- 1/100 #the proportion of eggs which are sampled from each individual every time we check their burden (between 0 and 1). 1= all eggs in the person are sampled. Typical value for a urine sample may be ~1/100
 heavy_burden_threshold <- 50 #number of eggs at which an individual is said to have a heavy infection
 
 

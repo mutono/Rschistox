@@ -18,6 +18,7 @@ We first load the required library
 
 ```{r setup}
 library(Rschistox)
+library(tidyverse)
 ```
 
 We then define the parameters for the model
@@ -112,3 +113,45 @@ pars <- make_age_contact_rate_array(pars, scenario, input_ages, input_contact_ra
 
 ```
 
+# Generate population and simulate to equilibrium
+Once we have defined the parameters, we can create the population and begin running simulations. We must define mda and vaccine information here. If we wish to perform no MDA or vaccinations then we add these as ```mda_info = array(0,dim=c(0,0)); vaccine_info = array(0,dim=c(0,0))``` as seen below.:
+```{r create_population}
+e = create_population_specified_ages(pars)
+humans = generate_ages_and_deaths(20000, e$humans, pars)
+humans = update_contact_rate(humans,  pars)
+
+
+mda_info = array(0,dim=c(0,0))
+vaccine_info = array(0,dim=c(0,0))
+number_years_equ = 100
+num_time_steps = as.integer(365*number_years_equ / time_step)
+
+
+
+e = update_env_constant_population_human_larvae(num_time_steps, humans,  e$miracidia, e$cercariae, pars, mda_info, vaccine_info)
+d = get_sac_data_from_record(e$record)
+
+sac_burden = d[[1]]
+sac_heavy_burden = d[[2]]
+times = d[[3]]
+```
+
+
+
+
+``` {r plot, fig.dim = c(8, 6)}
+plot(times, sac_burden, type = 'l', col = rgb(110/255, 99/255, 252/255), bty = 'n',
+     ylim = c(0, max(sac_burden)), lwd = 2, xlab = "year", ylab = "SAC prevalence")
+lines(times, sac_heavy_burden, col = rgb(30/255, 190/255, 160/255), lwd =2 )
+abline(h = 1, lwd = 2, lty = 2, col = rgb(2/255, 163/255, 217/255))
+
+legend('bottomright',legend=c("SAC prev", "SAC heavy burden"),
+       col=c(rgb(110/255, 99/255, 252/255), rgb(30/255, 190/255, 160/255)), lwd = c(2,2), lty = c(1,1), cex=1.2,
+       title="", text.font=18, bg='lightblue', bty = 'n')
+```
+
+We can save the resulting population as follows:
+```{r save_pop}
+filename = "population.csv"
+save_population_to_file(filename, e$humans,  e$miracidia, e$cercariae, pars)
+```

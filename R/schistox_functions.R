@@ -8,29 +8,47 @@ library(devtools)
 #' their gender, predisposition to picking up cercariae, the number of larvae, female and male worms and eggs in the individual along with
 #' a count of total lifetime eggs. Also it has their age dependent contact rate, adherence and access to interventions.
 #'
+#' @param age age of the individual
+#' @param death_age the pre-determined age of death
+#' @param predisposition predisposition to picking up cercariae
+#' @param female_worms number of female worms in the individual
+#' @param male_worms number of male worms in the individual
+#' @param eggs number of eggs in the individual
+#' @param vac_status vaccination status of the individual
+#' @param age_contact_rate age contact rate of the individual
+#' @param adherence individual adherence to treatment
+#' @param access individual access to treatment
+#' @param community the community the individual are in
+#' @param relative_contact_rate contact rate of the individual
+#' @param uptake_rate rate of uptake of cercariae
+#' @param acquired_immunity level of acquired immunity
+#' @param total_worms total number of worms over lifetime
+#' @param larvae number of larvae in the individual
+#' @param last_uptake last uptake of intervention
+#'
 #' @export
 Human <- function(age,death_age,gender,predisposition,female_worms,male_worms,
                   eggs,vac_status,age_contact_rate,adherence,access,community,
                   relative_contact_rate,uptake_rate,acquired_immunity,
                   total_worms, larvae,last_uptake){
-  age <- as.numeric(age)
-  death_age <- as.numeric(death_age)
-  gender <- as.integer(gender)
-  predisposition <- as.numeric(predisposition)
-  female_worms <- as.array(as.integer(female_worms))
-  male_worms <- as.array(as.integer(male_worms))
-  eggs <- as.integer(eggs)
-  vac_status <- as.integer(vac_status)
-  age_contact_rate <- as.numeric(age_contact_rate)
-  adherence <- as.integer(adherence)
-  access <- as.integer(access)
-  community <- as.integer(community)
-  relative_contact_rate <- as.numeric(relative_contact_rate)
-  uptake_rate <- as.numeric(uptake_rate)
-  acquired_immunity <- as.numeric(acquired_immunity) # level of acquired immunity
-  total_worms <- as.integer(total_worms) # total number of worms over lifetime
-  larvae <- as.array(as.integer(larvae))
-  last_uptake <- as.integer(last_uptake)
+  stopifnot(is.numeric(age))
+  stopifnot(is.numeric(death_age))
+  stopifnot(is.numeric(gender))
+  stopifnot(is.numeric(predisposition))
+  stopifnot(is.numeric(female_worms))
+  stopifnot(is.numeric(male_worms))
+  stopifnot(is.numeric(eggs))
+  stopifnot(is.numeric(round(vac_status)))
+  stopifnot(is.numeric(age_contact_rate))
+  stopifnot(is.numeric(round(adherence)))
+  stopifnot(is.numeric(round(access)))
+  stopifnot(is.numeric(community))
+  stopifnot(is.numeric(relative_contact_rate))
+  stopifnot(is.numeric(uptake_rate))
+  stopifnot(is.numeric(acquired_immunity)) # level of acquired immunity
+  stopifnot(is.numeric(round(total_worms))) # total number of worms over lifetime
+  stopifnot(is.numeric(larvae))
+  stopifnot(is.numeric(round(last_uptake)))
 
 
   human <- list("age"=age,"death_age"=death_age, "gender"=gender, "predisposition"=predisposition,
@@ -100,25 +118,19 @@ Human <- function(age,death_age,gender,predisposition,female_worms,male_worms,
 #' @param scenario can be one of "low adult", "moderate adult" or high adult"
 #'
 #' @export
-Parameters <- function(N=500, time_step=20, N_communities=1, community_probs=1,
-                       community_contact_rate=1, density_dependent_fecundity=0.0007,
-                       average_worm_lifespan=5.7, max_age=100, initial_worms=10,
-                       initial_miracidia=1e+08, initial_miracidia_days=1, init_env_cercariae=1e+08,
-                       worm_stages=1, contact_rate=0.18, max_fec_contact_rate_product=0.8, max_fecundity=20, age_contact_rates=as.array(c(0.004484305, 0.538116592, 0.448430493, 0.008968610)),
-                       ages_for_contacts=as.array(c(4, 9, 15, 100)), contact_rate_by_age_array=as.array(rep(0,times=101)), mda_adherence=1,
-                       mda_access=1, female_factor=1, male_factor=1, miracidia_maturity=24,
-                       birth_rate=28*time_step/(1000*365), human_cercariae_prop=1, predis_aggregation=0.24, cercariae_survival=0.05,
-                       miracidia_survival=0.05, death_prob_by_age=as.array(c(0.0656, 0.0093, 0.003, 0.0023, 0.0027, 0.0038, 0.0044, 0.0048,
-                                                                    0.0053, 0.0065, 0.0088, 0.0106, 0.0144, 0.021, 0.0333, 0.0529,
-                                                                    0.0851, 0.1366, 0.2183, 0.2998 , 0.3698, 1)),
-                       ages_for_death=as.array(c(1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60,
-                                        65, 70, 75, 80, 85, 90, 95, 100, 110)), r=0.0,
-                       vaccine_effectiveness=0.86, drug_effectiveness=0.86, spec_ages=as.array(c(7639, 7082, 6524, 5674, 4725, 4147, 3928, 3362,
-                                                                                        2636, 1970, 1468, 1166, 943, 718, 455, 244)), ages_per_index=5,
-                       record_frequency=1/24, use_kato_katz=0, kato_katz_par=0.87, heavy_burden_threshold=50,
-                       rate_acquired_immunity=0, M0=20, human_larvae_maturity_time=30, egg_sample_size= 1/100, input_ages=as.array(c(4, 9, 15, 100)), input_contact_rates= as.array(c(0.01, 1.2, 1, 0.02)),
-                       scenario="high adult")
-{
+Parameters <- function(N, time_step, N_communities, community_probs,
+                       community_contact_rate, density_dependent_fecundity,
+                       average_worm_lifespan, max_age, initial_worms,
+                       initial_miracidia, initial_miracidia_days, init_env_cercariae,
+                       worm_stages, contact_rate,max_fec_contact_rate_product, max_fecundity, age_contact_rates,
+                       ages_for_contacts, contact_rate_by_age_array, mda_adherence,
+                       mda_access, female_factor, male_factor, miracidia_maturity,
+                       birth_rate, human_cercariae_prop, predis_aggregation, cercariae_survival,
+                       miracidia_survival, death_prob_by_age, ages_for_death, r,
+                       vaccine_effectiveness, drug_effectiveness, spec_ages, ages_per_index,
+                       record_frequency, use_kato_katz, kato_katz_par, heavy_burden_threshold,
+                       rate_acquired_immunity, M0, human_larvae_maturity_time, egg_sample_size, input_ages, input_contact_rates,
+                       scenario){
 
   stopifnot(is.numeric(N))
   stopifnot(is.numeric(time_step))
@@ -128,7 +140,7 @@ Parameters <- function(N=500, time_step=20, N_communities=1, community_probs=1,
   stopifnot(is.numeric(density_dependent_fecundity))
   stopifnot(is.numeric(average_worm_lifespan))
   stopifnot(is.numeric(max_age))
-  stopifnot(is.numeric(initial_worms)<2)
+  stopifnot(is.numeric(initial_worms) & initial_worms>2)
   stopifnot(is.numeric(initial_miracidia))
   stopifnot(is.numeric(initial_miracidia_days))
   stopifnot(is.numeric(init_env_cercariae))
@@ -266,22 +278,19 @@ create_contact_settings <- function(scenario)
 
 
 #' This is a function to get age dependent contact rate.
-#' the contact rates are taken from the
-#' "What is required in terms of mass drug administration to interrupt the transmission
-#'     of schistosome parasites in regions of endemic infection?" paper
-#' at some point we may change this to be an input from a file instead
+#' This will make the contact rate array for each age of individual in the population, based either on a scenario basis
+#'  ("low adult", "moderate adult" or "high adult"), through the create_contact_settings function, or through
+#'  specifying an array of age breaks and the desired contact rates for the ages specified by the ages, using the
+#'  input_ages and input_contact_rates variables.
+#'  For example: input_contact_rates = [0.02,0.61, 1,0.06], input_ages= [4,9,15,100] will make 0-4 year olds have contact rate 0.02,
+#'  5-9 will have rate 0.61, 10-15 rate 1 and 16+ 0.06
+#'
 #' @export
 make_age_contact_rate_array <- function(pars, scenario, input_ages, input_contact_rates)
 {
-  #' This will make the contact rate array for each age of individual in the population, based either on a scenario basis
-  #'    ("low adult", "moderate adult" or "high adult"), through the create_contact_settings function, or through
-  #'    specifying an array of age breaks and the desired contact rates for the ages specified by the ages, using the
-  #'        input_ages and input_contact_rates variables.
-  #'    For example: input_contact_rates = [0.02,0.61, 1,0.06], input_ages= [4,9,15,100] will make 0-4 year olds have contact rate 0.02,
-  #'    5-9 will have rate 0.61, 10-15 rate 1 and 16+ 0.06
 
   if (pars$max_age < 60){
-    error("max_age must be greater than 60")
+    print("max_age must be greater than 60")
   }
   #if (length(pars$input_ages) == 0) {
     contact_settings = as.array(as.numeric())
@@ -414,7 +423,7 @@ generate_ages_and_deaths <- function(num_steps, humans, pars){
 create_population <- function(pars){
 
   if (length(pars$community_probs) != pars$N_communities){
-    error("must provide probabilities for membership of each community")
+    print("must provide probabilities for membership of each community")
   }
   else if (pars$N_communities > 1){
     community_selection = cumsum(pars$community_probs)/sum(pars$community_probs)
@@ -436,9 +445,9 @@ create_population <- function(pars){
   cercariae <- pars$init_env_cercariae
 
   #'  initialize the Gamma distribution for predisposition selection
-  pre <- rgamma(pars$predis_aggregation, 1/pars$predis_aggregation)
+  pre <- rgamma(1,pars$predis_aggregation, 1/pars$predis_aggregation)
   #' select all predispositions
-  predisposition = sample(c(pre, pars$N))
+  predisposition = runif(1,c(pre, pars$N))[1]
 
 
   for (i in 1:pars$N){
@@ -529,7 +538,7 @@ create_population_specified_ages <- function(pars){
 
   humans <- array()
   #'  initialize and fill the environmental variable
-  miracidia <- array(as.integer())
+  miracidia <- array(as.numeric())
   for (i in 1 : pars$initial_miracidia_days){
     miracidia <- as.array(append(miracidia, pars$initial_miracidia))
   }
@@ -605,12 +614,8 @@ update_contact_rate <- function(humans,  pars){
 
 }
 
-  #' Cercariae uptake
-
-
-
-#' cercariae_uptake(humans, cercariae, miracidia, pars)
-
+#' Cercariae uptake
+#'
 #' uptake cercariae into humans, whilst updating cercariae with miracidia.
 #' Uptaken cercariae immediately become worms in this formulation
 #' @export
@@ -739,7 +744,7 @@ enact_maturity_function_true <-  function(h){
   humans$female_worms[1] =humans$female_worms[1]+ females
   humans$male_worms[1] = humans$male_worms[1] + ( humans$larvae[1] - females)
   humans$total_worms = humans$total_worms+ humans$larvae[1]
-  slice(humans$larvae, 1)
+  splice(humans$larvae, 1)
   return(humans)
 }
 

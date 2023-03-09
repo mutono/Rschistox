@@ -25,6 +25,41 @@ Human(
   last_uptake
 )
 }
+\arguments{
+\item{age}{age of the individual}
+
+\item{death_age}{the pre-determined age of death}
+
+\item{predisposition}{predisposition to picking up cercariae}
+
+\item{female_worms}{number of female worms in the individual}
+
+\item{male_worms}{number of male worms in the individual}
+
+\item{eggs}{number of eggs in the individual}
+
+\item{vac_status}{vaccination status of the individual}
+
+\item{age_contact_rate}{age contact rate of the individual}
+
+\item{adherence}{individual adherence to treatment}
+
+\item{access}{individual access to treatment}
+
+\item{community}{the community the individual are in}
+
+\item{relative_contact_rate}{contact rate of the individual}
+
+\item{uptake_rate}{rate of uptake of cercariae}
+
+\item{acquired_immunity}{level of acquired immunity}
+
+\item{total_worms}{total number of worms over lifetime}
+
+\item{larvae}{number of larvae in the individual}
+
+\item{last_uptake}{last uptake of intervention}
+}
 \description{
 This function contains the information about a human individual. This contains age, the pre determined age of death, community they are in,
 their gender, predisposition to picking up cercariae, the number of larvae, female and male worms and eggs in the individual along with
