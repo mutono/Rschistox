@@ -18,7 +18,7 @@ To install the package you need to have devtools installed. If this isn't instal
 After this, you can run the following to install the package:
 ```R
 > library(devtools) 
-> devtools::install_github('mutono/Rschistox', build_vignettes=T)
+> devtools::install_github('mutono/Rschistox')
 ```
 
 Introduction
